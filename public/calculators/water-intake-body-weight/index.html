@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Water Intake by Body Weight | Nutryio</title>
+  <meta name="description" content="Calculate your hydration target proportional to your body weight using the most common formula."/>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+  <link rel="stylesheet" href="/style.css"/>
+  <link rel="stylesheet" href="/shared/calculator.css"/>
+  <script src="/shared/template.js" defer></script>
+  <script src="/shared/share.js" defer></script>
+  <script src="waterIntakeBodyWeight.js" defer></script>
+  <link rel="canonical" href="https://nutryio.fit/calculators/water-intake-body-weight/"/>
+    <meta property="og:title" content="Water Intake by Body Weight | Nutryio"/>
+    <meta property="og:description" content="Calculate your hydration target proportional to your body weight using the most common formula."/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content="https://nutryio.fit/calculators/water-intake-body-weight/"/>
+    <meta property="og:site_name" content="Nutryio"/>
+    <meta property="og:image" content="https://nutryio.fit/opengraph.jpg"/>
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:title" content="Water Intake by Body Weight | Nutryio"/>
+    <meta name="twitter:description" content="Calculate your hydration target proportional to your body weight using the most common formula."/>
+    <meta name="twitter:image" content="https://nutryio.fit/opengraph.jpg"/>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Water Intake by Body Weight","description":"Calculate your hydration target proportional to your body weight using the most common formula.","url":"https://nutryio.fit/calculators/water-intake-body-weight/","applicationCategory":"HealthApplication","operatingSystem":"All","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"provider":{"@type":"Organization","name":"Nutryio","url":"https://nutryio.fit"}}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How is my water intake target calculated?","acceptedAnswer":{"@type":"Answer","text":"Water needs are estimated using your body weight as a baseline (approximately 35 ml per kg per day) adjusted for activity level, climate, and other factors. Research shows hydration needs vary considerably between individuals based on these variables."}},{"@type":"Question","name":"Does coffee or tea count toward my daily fluid intake?","acceptedAnswer":{"@type":"Answer","text":"Yes — contrary to the old myth, caffeinated drinks like coffee and tea contribute to your daily fluid intake. However, alcohol is dehydrating and should not be counted. Water and non-caffeinated drinks remain the most efficient sources of hydration."}},{"@type":"Question","name":"How can I tell if I'm adequately hydrated?","acceptedAnswer":{"@type":"Answer","text":"Urine colour is one of the most reliable real-world indicators. Pale yellow (like lemonade) suggests good hydration. Dark yellow or amber signals you need more fluids. Clear urine may indicate overhydration, which can dilute important electrolytes."}},{"@type":"Question","name":"Does exercise affect my hydration needs?","acceptedAnswer":{"@type":"Answer","text":"Significantly. During moderate exercise, you can lose 0.5–2 litres of sweat per hour depending on intensity and conditions. The calculator accounts for activity level. For endurance sports over 60 minutes, electrolyte replacement alongside water is also recommended."}},{"@type":"Question","name":"Is it possible to drink too much water?","acceptedAnswer":{"@type":"Answer","text":"Yes — overhydration (hyponatremia) can dilute blood sodium to dangerous levels. This is rare in everyday life but a real risk for endurance athletes who drink plain water in excess without replacing electrolytes. Use the target as a guide, not a minimum to maximise."}}]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://nutryio.fit/"},{"@type":"ListItem","position":2,"name":"Calculators","item":"https://nutryio.fit/#categories"},{"@type":"ListItem","position":3,"name":"Water Intake by Body Weight","item":"https://nutryio.fit/calculators/water-intake-body-weight/"}]}</script>
+</head>
+<body>
+  <header class="header" id="site-header"></header>
+  <main>
+    <section class="calc-hero">
+      <div class="container">
+        <nav class="breadcrumb"><a href="/">Home</a> › <a href="/#categories">Calculators</a> › <a href="/#hydration">Hydration</a> › Water Intake by Body Weight</nav>
+        <span class="category-badge">💧 Hydration</span>
+        <h1>Water Intake by Body Weight</h1>
+        <p class="calc-description">Calculate your hydration target proportional to your body weight using the most common formula.</p>
+      </div>
+    </section>
+    <section class="container calc-layout">
+      <div>
+        <div class="unit-toggle" id="unit-toggle"><button class="unit-btn active" data-unit="metric">Metric</button><button class="unit-btn" data-unit="imperial">Imperial</button></div>
+        <div class="calc-card">
+          <h2>Enter Your Details</h2>
+          <div class="input-group"><label for="weight">Body Weight</label><div class="input-row"><input type="number" id="weight" class="input-field" placeholder="e.g. 70" min="1" max="300" step="any"/><span class="input-unit">kg</span></div></div>
+          <div class="input-group"><label for="formula">Calculation Formula</label><select id="formula" class="input-field" style="cursor:pointer"><option value="standard" selected>Standard (33ml per kg)</option><option value="moderate">Moderate (30ml per kg)</option><option value="us">US Common (0.5oz per lb)</option></select></div>
+          <button class="calc-btn" id="calc-btn">Calculate</button>
+          <div class="calc-warning" id="calc-warning"></div>
+          <div class="result-section" id="result-section">
+            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0.75rem;margin-top:0.5rem"><div style="padding:1rem;border-radius:0.75rem;border:1px solid #e2e8f0;background:#fff"><div style="font-size:0.75rem;font-weight:600;text-transform:uppercase;color:#64748b;margin-bottom:0.25rem">Daily Water</div><div style="font-size:1.5rem;font-weight:800;color:#0f172a" id="res-ml">--</div><div style="font-size:0.75rem;color:#64748b">ml</div></div><div style="padding:1rem;border-radius:0.75rem;border:1px solid #e2e8f0;background:#fff"><div style="font-size:0.75rem;font-weight:600;text-transform:uppercase;color:#64748b;margin-bottom:0.25rem">Daily Water</div><div style="font-size:1.5rem;font-weight:800;color:#0f172a" id="res-liters">--</div><div style="font-size:0.75rem;color:#64748b">liters</div></div><div style="padding:1rem;border-radius:0.75rem;border:1px solid #e2e8f0;background:#fff"><div style="font-size:0.75rem;font-weight:600;text-transform:uppercase;color:#64748b;margin-bottom:0.25rem">Daily Water</div><div style="font-size:1.5rem;font-weight:800;color:#0f172a" id="res-oz">--</div><div style="font-size:0.75rem;color:#64748b">fluid oz</div></div></div><div class="info-card" style="margin-top:1rem"><h3>Remember</h3><p>This is a starting baseline. Add 300-600ml per 30 minutes of exercise, and more in hot weather. This does not account for water from food (usually about 20% of total intake).</p></div>
+          </div>
+        </div>
+        
+      
+
+
+      <div class="share-bar"><span class="share-bar-label">Share this</span><div class="share-bar-buttons"><button class="share-btn share-btn-facebook" data-share="facebook" title="Share on Facebook"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg><span class="share-btn-text">Facebook</span></button><button class="share-btn share-btn-x" data-share="x" title="Share on X"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg><span class="share-btn-text">X</span></button><button class="share-btn share-btn-pinterest" data-share="pinterest" title="Save on Pinterest"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 0 1 .083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg><span class="share-btn-text">Pinterest</span></button><button class="share-btn share-btn-reddit" data-share="reddit" title="Share on Reddit"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/></svg><span class="share-btn-text">Reddit</span></button><button class="share-btn share-btn-copy" data-share="copy" title="Copy link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg><span class="share-btn-text">Copy link</span></button></div></div>
+
+      <div class="ad-unit" data-ad="calc-after-calculator"><span class="ad-label">Advertisement</span><div class="ad-box-responsive">Responsive Ad Space</div></div>
+
+            <div class="calc-seo-content">
+<h2>How the Water Intake by Body Weight Works</h2>
+          <p>The Water Intake by Body Weight estimates your daily fluid needs using your body weight as a base (approximately 35 ml/kg/day for adults), then adjusts upward based on activity level, climate exposure, and other hydration factors. Research shows that hydration needs can vary by 2x or more between sedentary and highly active individuals.</p><p>The result is a total daily fluid target from all sources — including food, which contributes roughly 20% of total fluid intake for most people. The "drink" target shown accounts for the food contribution.</p>
+
+          <h2>Frequently Asked Questions</h2>
+          <div class="faq-list">
+      <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <h3 itemprop="name">How is my water intake target calculated?</h3>
+        <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <p itemprop="text">Water needs are estimated using your body weight as a baseline (approximately 35 ml per kg per day) adjusted for activity level, climate, and other factors. Research shows hydration needs vary considerably between individuals based on these variables.</p>
+        </div>
+      </div>
+    <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <h3 itemprop="name">Does coffee or tea count toward my daily fluid intake?</h3>
+        <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <p itemprop="text">Yes — contrary to the old myth, caffeinated drinks like coffee and tea contribute to your daily fluid intake. However, alcohol is dehydrating and should not be counted. Water and non-caffeinated drinks remain the most efficient sources of hydration.</p>
+        </div>
+      </div>
+    <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <h3 itemprop="name">How can I tell if I'm adequately hydrated?</h3>
+        <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <p itemprop="text">Urine colour is one of the most reliable real-world indicators. Pale yellow (like lemonade) suggests good hydration. Dark yellow or amber signals you need more fluids. Clear urine may indicate overhydration, which can dilute important electrolytes.</p>
+        </div>
+      </div>
+    <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <h3 itemprop="name">Does exercise affect my hydration needs?</h3>
+        <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <p itemprop="text">Significantly. During moderate exercise, you can lose 0.5–2 litres of sweat per hour depending on intensity and conditions. The calculator accounts for activity level. For endurance sports over 60 minutes, electrolyte replacement alongside water is also recommended.</p>
+        </div>
+      </div>
+    <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <h3 itemprop="name">Is it possible to drink too much water?</h3>
+        <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <p itemprop="text">Yes — overhydration (hyponatremia) can dilute blood sodium to dangerous levels. This is rare in everyday life but a real risk for endurance athletes who drink plain water in excess without replacing electrolytes. Use the target as a guide, not a minimum to maximise.</p>
+        </div>
+      </div>
+          </div>
+      </div>
+        <div class="ad-unit" data-ad="calc-after-content"><span class="ad-label">Advertisement</span><div class="ad-box-responsive">Responsive Ad Space</div></div>
+      </div>
+      <aside class="calc-sidebar">
+        <div class="sidebar-card"><h3>Water Formulas</h3><table class="class-table"><thead><tr><th>Formula</th><th>Amount</th></tr></thead><tbody><tr><td>Standard</td><td>33ml per kg BW</td></tr><tr><td>Moderate</td><td>30ml per kg BW</td></tr><tr><td>US Common</td><td>0.5oz per lb BW</td></tr><tr><td>European</td><td>8x 250ml glasses</td></tr><tr><td>IOM (general)</td><td>Men: 3.7L, Women: 2.7L</td></tr></tbody></table></div>
+        <div class="calc-ad" data-ad="calc-sidebar"><span>Sponsored</span>Advertisement</div>
+        <div class="sidebar-card"><h3>Related Calculators</h3><div class="related-list"><a href="/calculators/daily-water-intake/" class="related-item">💧 Daily Water Intake</a><a href="/calculators/hydration-for-exercise/" class="related-item">🏃 Exercise Hydration</a><a href="/calculators/sweat-rate-calculator/" class="related-item">💦 Sweat Rate</a></div></div>
+      </aside>
+    </section>
+  
+    <!-- SEO Content Section -->
+</main>
+  <footer class="footer" id="site-footer"></footer>
+</body>
+</html>

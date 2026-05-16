@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Body Roundness Index Calculator | Nutryio</title>
+  <meta name="description" content="Calculate your Body Roundness Index (BRI) to assess body shape and central fat accumulation without relying on body weight."/>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+  <link rel="stylesheet" href="/style.css"/>
+  <link rel="stylesheet" href="/shared/calculator.css"/>
+  <script src="/shared/template.js" defer></script>
+  <script src="/shared/share.js" defer></script>
+  <script src="bri.js" defer></script>
+  <link rel="canonical" href="https://nutryio.fit/calculators/body-roundness-index/"/>
+    <meta property="og:title" content="Body Roundness Index (BRI) | Nutryio"/>
+    <meta property="og:description" content="Calculate your Body Roundness Index (BRI) to assess body shape and central fat accumulation without relying on body weight."/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content="https://nutryio.fit/calculators/body-roundness-index/"/>
+    <meta property="og:site_name" content="Nutryio"/>
+    <meta property="og:image" content="https://nutryio.fit/opengraph.jpg"/>
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:title" content="Body Roundness Index (BRI) | Nutryio"/>
+    <meta name="twitter:description" content="Calculate your Body Roundness Index (BRI) to assess body shape and central fat accumulation without relying on body weight."/>
+    <meta name="twitter:image" content="https://nutryio.fit/opengraph.jpg"/>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Body Roundness Index (BRI)","description":"Calculate your Body Roundness Index (BRI) to assess body shape and central fat accumulation without relying on body weight.","url":"https://nutryio.fit/calculators/body-roundness-index/","applicationCategory":"HealthApplication","operatingSystem":"All","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"provider":{"@type":"Organization","name":"Nutryio","url":"https://nutryio.fit"}}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is the Body Roundness Index (BRI) accurate?","acceptedAnswer":{"@type":"Answer","text":"This calculator uses scientifically validated formulas based on population research. While no calculator can replace clinical measurement, it provides a reliable estimate for tracking trends over time. Results are most accurate when measurements are taken consistently under the same conditions."}},{"@type":"Question","name":"How often should I check my result?","acceptedAnswer":{"@type":"Answer","text":"For most body composition metrics, checking once every 2–4 weeks is sufficient to track meaningful changes. Daily fluctuations in hydration and food intake can skew readings, so monthly consistency checks are more meaningful than daily comparisons."}},{"@type":"Question","name":"What is a healthy range for this metric?","acceptedAnswer":{"@type":"Answer","text":"Healthy ranges vary by age, sex, and individual health context. The results page clearly marks where your result falls relative to established reference ranges. Always discuss your specific targets with a healthcare provider."}},{"@type":"Question","name":"Do I need any special equipment?","acceptedAnswer":{"@type":"Answer","text":"No special equipment is needed — just a measuring tape and a scale. Measurement accuracy improves when you measure in the morning, before eating, in the same body position each time."}},{"@type":"Question","name":"Can this calculator be used for children?","acceptedAnswer":{"@type":"Answer","text":"Most body metric calculators on Nutryio are designed for adults (18+). For children and adolescents, age- and sex-specific growth charts are more appropriate. Nutryio also offers specialized pediatric calculators for younger users."}}]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://nutryio.fit/"},{"@type":"ListItem","position":2,"name":"Calculators","item":"https://nutryio.fit/#categories"},{"@type":"ListItem","position":3,"name":"Body Roundness Index (BRI)","item":"https://nutryio.fit/calculators/body-roundness-index/"}]}</script>
+</head>
+<body>
+  <header class="header" id="site-header"></header>
+  
+  <main>
+    <section class="calc-hero">
+      <div class="container">
+        <nav class="breadcrumb">
+          <a href="/">Home</a> › <a href="/#categories">Calculators</a> › <a href="/#body-metrics">Body Metrics</a> › Body Roundness Index
+        </nav>
+        <span class="category-badge">🧍 Body Metrics</span>
+        <h1>Body Roundness Index (BRI)</h1>
+        <p class="calc-description">BRI assesses body shape using only your height and waist circumference. No weight scale required.</p>
+      </div>
+    </section>
+
+    <section class="container calc-layout">
+      <div>
+        <div class="unit-toggle" id="unit-toggle">
+          <button class="unit-btn active" data-unit="metric">Metric (cm)</button>
+          <button class="unit-btn" data-unit="imperial">Imperial (inches)</button>
+        </div>
+
+        <div class="calc-card">
+          <h2>Enter Your Details</h2>
+
+          <div class="input-group" id="height-metric">
+            <label for="height-cm">Height</label>
+            <div class="input-row">
+              <input type="number" id="height-cm" class="input-field" placeholder="e.g. 175" min="1" max="300" step="any"/>
+              <span class="input-unit">cm</span>
+            </div>
+          </div>
+          <div class="input-group" id="height-imperial" style="display:none">
+            <label>Height</label>
+            <div class="input-row">
+              <input type="number" id="height-ft" class="input-field" placeholder="ft" min="1" max="9" step="any"/>
+              <span class="input-unit">ft</span>
+              <input type="number" id="height-in" class="input-field" placeholder="in" min="0" max="11" step="any"/>
+              <span class="input-unit">in</span>
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label for="waist-input" id="waist-label">Waist Circumference</label>
+            <div class="input-row">
+              <input type="number" id="waist-input" class="input-field" placeholder="e.g. 85" min="20" max="300" step="any"/>
+              <span class="input-unit" id="waist-unit">cm</span>
+            </div>
+          </div>
+
+          <button class="calc-btn" id="calc-btn">Calculate BRI</button>
+          
+          <div class="calc-warning" id="calc-error"></div>
+
+          <div class="result-section" id="result-section">
+            <div style="display:flex;align-items:baseline;gap:1rem;flex-wrap:wrap;">
+              <div class="result-number" id="bri-val">--</div>
+              <span class="result-badge" id="result-badge">--</span>
+            </div>
+
+            <div class="bmi-bar-wrap">
+              <div class="bmi-bar" style="background:linear-gradient(to right, #3b82f6 0%, #22c55e 20%, #22c55e 35%, #facc15 50%, #f97316 70%, #ef4444 100%)">
+                <div class="bmi-marker" id="bri-marker" style="left:0%"></div>
+              </div>
+              <div class="bmi-bar-labels"><span>1</span><span>3.5</span><span>5</span><span>7</span><span>10</span></div>
+            </div>
+
+            <div style="margin-top:1.5rem;display:flex;flex-direction:column;gap:0.5rem">
+              <div style="padding:0.75rem 1rem;background:var(--pill-bg);border-radius:0.5rem;font-size:0.875rem;color:var(--muted-foreground);display:flex;align-items:center;gap:0.5rem">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                BRI only needs waist and height — no scale required
+              </div>
+              <div style="padding:0.75rem 1rem;background:var(--pill-bg);border-radius:0.5rem;font-size:0.875rem;color:var(--muted-foreground);display:flex;align-items:center;gap:0.5rem">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>
+                This measure emphasizes body shape over body weight
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="share-bar"><span class="share-bar-label">Share this</span><div class="share-bar-buttons"><button class="share-btn share-btn-facebook" data-share="facebook" title="Share on Facebook"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg><span class="share-btn-text">Facebook</span></button><button class="share-btn share-btn-x" data-share="x" title="Share on X"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg><span class="share-btn-text">X</span></button><button class="share-btn share-btn-pinterest" data-share="pinterest" title="Save on Pinterest"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 0 1 .083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg><span class="share-btn-text">Pinterest</span></button><button class="share-btn share-btn-reddit" data-share="reddit" title="Share on Reddit"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/></svg><span class="share-btn-text">Reddit</span></button><button class="share-btn share-btn-copy" data-share="copy" title="Copy link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg><span class="share-btn-text">Copy link</span></button></div></div>
+
+        <!-- Ad: after calculator card -->
+        <div class="ad-unit" data-ad="calc-after-calculator"><span class="ad-label">Advertisement</span><div class="ad-box-responsive">Responsive Ad Space</div></div>
+
+        <div class="info-card" style="margin-top:1.5rem;">
+          <h3>BRI vs BMI</h3>
+          <p>BRI models the human body as an ellipse and uses waist circumference relative to height to estimate body roundness. A BRI closer to 1 represents a very lean, cylindrical body. Higher values indicate more roundness and central fat accumulation, which correlates more strongly with health risks than BMI.</p>
+        </div>
+      
+
+      <div class="calc-seo-content">
+<h2>How the Body Roundness Index (BRI) Works</h2>
+          <p>The Body Roundness Index (BRI) uses your measurements to calculate a standardised index based on published clinical research. You enter your key metrics (such as height, weight, and relevant body measurements), and the tool applies validated formulas to produce an instant result. Results are compared against established reference ranges so you immediately understand where you stand.</p><p>Accuracy depends on measurement precision — use the same technique each time (same time of day, same device) for reliable trend data. The calculator works for both metric (cm/kg) and imperial (ft, in, lbs) units.</p>
+
+          <h2>Frequently Asked Questions</h2>
+          <div class="faq-list">
+      <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <h3 itemprop="name">Is the Body Roundness Index (BRI) accurate?</h3>
+        <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <p itemprop="text">This calculator uses scientifically validated formulas based on population research. While no calculator can replace clinical measurement, it provides a reliable estimate for tracking trends over time. Results are most accurate when measurements are taken consistently under the same conditions.</p>
+        </div>
+      </div>
+    <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <h3 itemprop="name">How often should I check my result?</h3>
+        <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <p itemprop="text">For most body composition metrics, checking once every 2–4 weeks is sufficient to track meaningful changes. Daily fluctuations in hydration and food intake can skew readings, so monthly consistency checks are more meaningful than daily comparisons.</p>
+        </div>
+      </div>
+    <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <h3 itemprop="name">What is a healthy range for this metric?</h3>
+        <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <p itemprop="text">Healthy ranges vary by age, sex, and individual health context. The results page clearly marks where your result falls relative to established reference ranges. Always discuss your specific targets with a healthcare provider.</p>
+        </div>
+      </div>
+    <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <h3 itemprop="name">Do I need any special equipment?</h3>
+        <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <p itemprop="text">No special equipment is needed — just a measuring tape and a scale. Measurement accuracy improves when you measure in the morning, before eating, in the same body position each time.</p>
+        </div>
+      </div>
+    <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <h3 itemprop="name">Can this calculator be used for children?</h3>
+        <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <p itemprop="text">Most body metric calculators on Nutryio are designed for adults (18+). For children and adolescents, age- and sex-specific growth charts are more appropriate. Nutryio also offers specialized pediatric calculators for younger users.</p>
+        </div>
+      </div>
+          </div>
+      </div>
+        <div class="ad-unit" data-ad="calc-after-content"><span class="ad-label">Advertisement</span><div class="ad-box-responsive">Responsive Ad Space</div></div>
+      </div>
+      <aside class="calc-sidebar">
+        <div class="sidebar-card">
+          <h3>BRI Categories</h3>
+          <table class="class-table">
+            <thead><tr><th>Category</th><th>BRI Range</th></tr></thead>
+            <tbody>
+              <tr><td><span class="dot dot-blue"></span>Very Lean</td><td>< 2.0</td></tr>
+              <tr><td><span class="dot dot-green"></span>Lean / Normal</td><td>2.0 - 3.4</td></tr>
+              <tr><td><span class="dot dot-yellow"></span>Average</td><td>3.5 - 4.9</td></tr>
+              <tr><td><span class="dot dot-orange"></span>High Body Fat</td><td>5.0 - 6.9</td></tr>
+              <tr><td><span class="dot dot-red"></span>Very High / Obesity</td><td>≥ 7.0</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="calc-ad" data-ad="calc-sidebar">
+          <span>Sponsored</span>
+          Advertisement
+        </div>
+
+        <div class="sidebar-card">
+          <h3>Related Calculators</h3>
+          <div class="related-list">
+            <a href="/calculators/bmi-calculator/" class="related-item">⚖️ BMI Calculator</a>
+            <a href="/calculators/body-shape-index/" class="related-item">📐 Body Shape Index (ABSI)</a>
+            <a href="/calculators/waist-to-height-ratio/" class="related-item">📏 Waist-to-Height Ratio</a>
+            <a href="/calculators/ponderal-index/" class="related-item">⚖️ Ponderal Index</a>
+          </div>
+        </div>
+      </aside>
+    </section>
+  
+    <!-- SEO Content Section -->
+</main>
+
+  <footer class="footer" id="site-footer"></footer>
+</body>
+</html>

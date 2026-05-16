@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Anti-Inflammatory Diet Score | Nutryio</title>
+  <meta name="description" content="Score your diet's anti-inflammatory potential based on food frequency research."/>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+  <link rel="stylesheet" href="/style.css"/>
+  <link rel="stylesheet" href="/shared/calculator.css"/>
+  <script src="/shared/template.js" defer></script>
+  <script src="/shared/share.js" defer></script>
+  <script src="antiInflammatoryDietScore.js" defer></script>
+  <link rel="canonical" href="https://nutryio.fit/calculators/anti-inflammatory-diet-score/"/>
+    <meta property="og:title" content="Anti-Inflammatory Diet Score | Nutryio"/>
+    <meta property="og:description" content="Score your diet's anti-inflammatory potential based on food frequency research."/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content="https://nutryio.fit/calculators/anti-inflammatory-diet-score/"/>
+    <meta property="og:site_name" content="Nutryio"/>
+    <meta property="og:image" content="https://nutryio.fit/opengraph.jpg"/>
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:title" content="Anti-Inflammatory Diet Score | Nutryio"/>
+    <meta name="twitter:description" content="Score your diet's anti-inflammatory potential based on food frequency research."/>
+    <meta name="twitter:image" content="https://nutryio.fit/opengraph.jpg"/>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Anti-Inflammatory Diet Score","description":"Score your diet's anti-inflammatory potential based on food frequency research.","url":"https://nutryio.fit/calculators/anti-inflammatory-diet-score/","applicationCategory":"HealthApplication","operatingSystem":"All","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"provider":{"@type":"Organization","name":"Nutryio","url":"https://nutryio.fit"}}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How is this health score or index calculated?","acceptedAnswer":{"@type":"Answer","text":"The calculation uses research-based scoring methods drawing on published clinical studies, dietary guidelines, and epidemiological data. Your inputs are evaluated against established reference ranges to generate a personalised result with context about what it means for your health."}},{"@type":"Question","name":"Is this a medical diagnosis?","acceptedAnswer":{"@type":"Answer","text":"No — this calculator is an educational tool designed to increase health awareness, not to diagnose, treat, or replace professional medical advice. If you have concerns about your health metrics, consult a qualified healthcare provider for clinical assessment."}},{"@type":"Question","name":"How often should I check this metric?","acceptedAnswer":{"@type":"Answer","text":"For most health-related metrics, checking every 1–3 months provides a meaningful trend while avoiding day-to-day noise. Frequent daily tracking is generally unnecessary and can cause unproductive anxiety. Focus on the direction of change over time rather than individual readings."}},{"@type":"Question","name":"What lifestyle changes most affect this metric?","acceptedAnswer":{"@type":"Answer","text":"Diet quality, physical activity, sleep, alcohol consumption, and stress management are the most consistently influential lifestyle factors across nearly all health metrics. Small, sustainable changes in multiple areas tend to be more effective than dramatic changes in one area."}},{"@type":"Question","name":"When should I see a doctor about my result?","acceptedAnswer":{"@type":"Answer","text":"If your result falls in a high-risk category or has changed significantly since your last check, it's worth discussing with a healthcare provider — especially if you also have symptoms or other risk factors. Use the calculator as a conversation starter with your doctor, not a substitute for one."}}]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://nutryio.fit/"},{"@type":"ListItem","position":2,"name":"Calculators","item":"https://nutryio.fit/#categories"},{"@type":"ListItem","position":3,"name":"Anti-Inflammatory Diet Score","item":"https://nutryio.fit/calculators/anti-inflammatory-diet-score/"}]}</script>
+</head>
+<body>
+  <header class="header" id="site-header"></header>
+  <main>
+    <section class="calc-hero">
+      <div class="container">
+        <nav class="breadcrumb"><a href="/">Home</a> › <a href="/#categories">Calculators</a> › <a href="/#food-nutrition-diet">Food Nutrition & Diet</a> › Anti-Inflammatory Diet Score</nav>
+        <span class="category-badge">🍽️ Food Nutrition & Diet</span>
+        <h1>Anti-Inflammatory Diet Score</h1>
+        <p class="calc-description">Score your diet's anti-inflammatory potential based on food frequency research.</p>
+      </div>
+    </section>
+    <section class="container calc-layout">
+      <div>
+        
+        <div class="calc-card">
+          <h2>Enter Your Details</h2>
+          <div class="input-group"><label for="fatty_fish">Fatty Fish (salmon, sardines, mackerel) servings/week</label><div class="input-row"><input type="number" id="fatty_fish" class="input-field" placeholder="e.g. 2" min="0" max="21" step="0.5"/><span class="input-unit">/week</span></div></div>
+<div class="input-group"><label for="vegetables">Vegetables servings/day</label><div class="input-row"><input type="number" id="vegetables" class="input-field" placeholder="e.g. 4" min="0" max="15" step="0.5"/><span class="input-unit">/day</span></div></div>
+<div class="input-group"><label for="fruits">Fruits servings/day</label><div class="input-row"><input type="number" id="fruits" class="input-field" placeholder="e.g. 2" min="0" max="10" step="0.5"/><span class="input-unit">/day</span></div></div>
+<div class="input-group"><label for="nuts">Nuts/seeds servings/week</label><div class="input-row"><input type="number" id="nuts" class="input-field" placeholder="e.g. 5" min="0" max="21" step="1"/><span class="input-unit">/week</span></div></div>
+<div class="input-group"><label for="olive_oil">Olive oil as primary cooking fat (0=never, 10=always)</label><div class="input-row"><input type="number" id="olive_oil" class="input-field" placeholder="e.g. 7" min="0" max="10" step="1"/><span class="input-unit">/10</span></div></div>
+<div class="input-group"><label for="processed">Processed/fast food meals per week</label><div class="input-row"><input type="number" id="processed" class="input-field" placeholder="e.g. 3" min="0" max="21" step="1"/><span class="input-unit">/week</span></div></div>
+<div class="input-group"><label for="sugar">Sugary drinks/snacks per day</label><div class="input-row"><input type="number" id="sugar" class="input-field" placeholder="e.g. 1" min="0" max="10" step="0.5"/><span class="input-unit">/day</span></div></div>
+<div class="input-group"><label for="red_meat">Red/processed meat servings per week</label><div class="input-row"><input type="number" id="red_meat" class="input-field" placeholder="e.g. 4" min="0" max="21" step="1"/><span class="input-unit">/week</span></div></div>
+          <button class="calc-btn" id="calc-btn">Calculate</button>
+          <div class="calc-warning" id="calc-warning"></div>
+          <div class="result-section" id="result-section">
+            <div class="result-number" id="res-score">--</div><div style="font-size:1rem;color:#64748b;margin-top:0.25rem">/ 100 Anti-Inflammatory Score</div><div class="info-card" style="margin-top:1rem"><h3>Assessment</h3><p id="res-assessment"></p></div><div style="display:grid;grid-template-columns:repeat(2,1fr);gap:0.75rem;margin-top:0.5rem"><div style="padding:1rem;border-radius:0.75rem;border:1px solid #e2e8f0;background:#fff"><div style="font-size:0.75rem;font-weight:600;text-transform:uppercase;color:#64748b;margin-bottom:0.25rem">Pro-Inflammatory Score</div><div style="font-size:1.5rem;font-weight:800;color:#0f172a" id="res-pro">--</div><div style="font-size:0.75rem;color:#64748b">/50 (lower better)</div></div><div style="padding:1rem;border-radius:0.75rem;border:1px solid #e2e8f0;background:#fff"><div style="font-size:0.75rem;font-weight:600;text-transform:uppercase;color:#64748b;margin-bottom:0.25rem">Anti-Inflammatory Score</div><div style="font-size:1.5rem;font-weight:800;color:#0f172a" id="res-anti">--</div><div style="font-size:0.75rem;color:#64748b">/50 (higher better)</div></div></div>
+          </div>
+        </div>
+        
+      
+
+
+      <div class="share-bar"><span class="share-bar-label">Share this</span><div class="share-bar-buttons"><button class="share-btn share-btn-facebook" data-share="facebook" title="Share on Facebook"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg><span class="share-btn-text">Facebook</span></button><button class="share-btn share-btn-x" data-share="x" title="Share on X"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg><span class="share-btn-text">X</span></button><button class="share-btn share-btn-pinterest" data-share="pinterest" title="Save on Pinterest"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 0 1 .083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg><span class="share-btn-text">Pinterest</span></button><button class="share-btn share-btn-reddit" data-share="reddit" title="Share on Reddit"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/></svg><span class="share-btn-text">Reddit</span></button><button class="share-btn share-btn-copy" data-share="copy" title="Copy link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg><span class="share-btn-text">Copy link</span></button></div></div>
+
+      <div class="ad-unit" data-ad="calc-after-calculator"><span class="ad-label">Advertisement</span><div class="ad-box-responsive">Responsive Ad Space</div></div>
+
+            <div class="calc-seo-content">
+<h2>How the Anti-Inflammatory Diet Score Works</h2>
+          <p>The Anti-Inflammatory Diet Score evaluates your input data against clinically established reference ranges and scoring systems developed from epidemiological research. Results are designed to be immediately actionable: each output category comes with context explaining what your score means and what evidence-based steps can shift it in a positive direction.</p><p>This tool is for health awareness and education. It is not a diagnostic instrument. Discuss results that concern you — or results in a high-risk category — with a qualified healthcare provider.</p>
+
+          <h2>Frequently Asked Questions</h2>
+          <div class="faq-list">
+      <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <h3 itemprop="name">How is this health score or index calculated?</h3>
+        <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <p itemprop="text">The calculation uses research-based scoring methods drawing on published clinical studies, dietary guidelines, and epidemiological data. Your inputs are evaluated against established reference ranges to generate a personalised result with context about what it means for your health.</p>
+        </div>
+      </div>
+    <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <h3 itemprop="name">Is this a medical diagnosis?</h3>
+        <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <p itemprop="text">No — this calculator is an educational tool designed to increase health awareness, not to diagnose, treat, or replace professional medical advice. If you have concerns about your health metrics, consult a qualified healthcare provider for clinical assessment.</p>
+        </div>
+      </div>
+    <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <h3 itemprop="name">How often should I check this metric?</h3>
+        <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <p itemprop="text">For most health-related metrics, checking every 1–3 months provides a meaningful trend while avoiding day-to-day noise. Frequent daily tracking is generally unnecessary and can cause unproductive anxiety. Focus on the direction of change over time rather than individual readings.</p>
+        </div>
+      </div>
+    <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <h3 itemprop="name">What lifestyle changes most affect this metric?</h3>
+        <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <p itemprop="text">Diet quality, physical activity, sleep, alcohol consumption, and stress management are the most consistently influential lifestyle factors across nearly all health metrics. Small, sustainable changes in multiple areas tend to be more effective than dramatic changes in one area.</p>
+        </div>
+      </div>
+    <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <h3 itemprop="name">When should I see a doctor about my result?</h3>
+        <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <p itemprop="text">If your result falls in a high-risk category or has changed significantly since your last check, it's worth discussing with a healthcare provider — especially if you also have symptoms or other risk factors. Use the calculator as a conversation starter with your doctor, not a substitute for one.</p>
+        </div>
+      </div>
+          </div>
+      </div>
+        <div class="ad-unit" data-ad="calc-after-content"><span class="ad-label">Advertisement</span><div class="ad-box-responsive">Responsive Ad Space</div></div>
+      </div>
+      <aside class="calc-sidebar">
+        <div class="sidebar-card"><h3>Top Anti-Inflammatory Foods</h3><table class="class-table"><thead><tr><th>Food</th><th>Key Compound</th></tr></thead><tbody><tr><td>Fatty fish</td><td>Omega-3 EPA/DHA</td></tr><tr><td>Turmeric</td><td>Curcumin</td></tr><tr><td>Berries</td><td>Anthocyanins</td></tr><tr><td>Extra virgin olive oil</td><td>Oleocanthal</td></tr><tr><td>Leafy greens</td><td>Vitamin K, antioxidants</td></tr><tr><td>Walnuts</td><td>ALA omega-3</td></tr></tbody></table></div>
+        <div class="calc-ad" data-ad="calc-sidebar"><span>Sponsored</span>Advertisement</div>
+        <div class="sidebar-card"><h3>Related Calculators</h3><div class="related-list"><a href="/calculators/omega-3-needs-calculator/" class="related-item">🐟 Omega-3 Needs</a><a href="/calculators/mediterranean-diet-score/" class="related-item">🍽️ Mediterranean Diet Score</a><a href="/calculators/nutritional-balance-score/" class="related-item">⚖️ Nutritional Balance</a></div></div>
+      </aside>
+    </section>
+  
+    <!-- SEO Content Section -->
+</main>
+  <footer class="footer" id="site-footer"></footer>
+</body>
+</html>
