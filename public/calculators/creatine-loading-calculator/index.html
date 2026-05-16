@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Creatine Loading Calculator | Nutryio</title>
+  <meta name="description" content="Calculate your optimal creatine loading phase and maintenance dose based on your body weight."/>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+  <link rel="stylesheet" href="/style.css"/>
+  <link rel="stylesheet" href="/shared/calculator.css"/>
+  <script src="/shared/template.js" defer></script>
+  <script src="/shared/share.js" defer></script>
+  <script src="creatineLoadingCalculator.js" defer></script>
+  <link rel="canonical" href="https://nutryio.fit/calculators/creatine-loading-calculator/"/>
+    <meta property="og:title" content="Creatine Loading Calculator | Nutryio"/>
+    <meta property="og:description" content="Calculate your optimal creatine loading phase and maintenance dose based on your body weight."/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content="https://nutryio.fit/calculators/creatine-loading-calculator/"/>
+    <meta property="og:site_name" content="Nutryio"/>
+    <meta property="og:image" content="https://nutryio.fit/opengraph.jpg"/>
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:title" content="Creatine Loading Calculator | Nutryio"/>
+    <meta name="twitter:description" content="Calculate your optimal creatine loading phase and maintenance dose based on your body weight."/>
+    <meta name="twitter:image" content="https://nutryio.fit/opengraph.jpg"/>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Creatine Loading Calculator","description":"Calculate your optimal creatine loading phase and maintenance dose based on your body weight.","url":"https://nutryio.fit/calculators/creatine-loading-calculator/","applicationCategory":"HealthApplication","operatingSystem":"All","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"provider":{"@type":"Organization","name":"Nutryio","url":"https://nutryio.fit"}}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How is the recommended dose calculated?","acceptedAnswer":{"@type":"Answer","text":"Dosage recommendations are based on clinical research, manufacturer guidelines, and dietary reference intakes established by bodies such as the NIH and EFSA. The calculator personalises the baseline dose using factors like bodyweight, activity level, and goal where evidence supports this approach."}},{"@type":"Question","name":"Is it safe to take supplements?","acceptedAnswer":{"@type":"Answer","text":"Most widely studied supplements are safe when taken within recommended doses. Individual responses vary, and some supplements interact with medications. Always consult a healthcare provider before beginning any supplementation, particularly if you take prescription drugs or have a pre-existing health condition."}},{"@type":"Question","name":"Should I take this supplement with food or on an empty stomach?","acceptedAnswer":{"@type":"Answer","text":"Timing and absorption depend on the specific supplement. Fat-soluble vitamins (A, D, E, K) and omega-3s absorb better with a meal containing fat. Others like caffeine and creatine work well regardless of food intake. The calculator's output notes and references cover timing where it's clinically significant."}},{"@type":"Question","name":"Can I get this nutrient from food instead?","acceptedAnswer":{"@type":"Answer","text":"For most micronutrients and many compounds (like omega-3s, calcium, and vitamin D), whole foods are the preferred source. Supplements fill gaps when dietary intake is insufficient. The recommendation is to optimise diet first, then use supplements to address specific deficiencies or performance needs."}},{"@type":"Question","name":"How long does it take to see results?","acceptedAnswer":{"@type":"Answer","text":"Timelines vary considerably by supplement and goal. Creatine loading protocols show performance effects within 5–7 days. Omega-3s take 4–8 weeks to meaningfully affect biomarkers. Vitamin D levels change slowly over months. Tracking baseline and follow-up measurements helps assess your individual response."}}]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://nutryio.fit/"},{"@type":"ListItem","position":2,"name":"Calculators","item":"https://nutryio.fit/#categories"},{"@type":"ListItem","position":3,"name":"Creatine Loading Calculator","item":"https://nutryio.fit/calculators/creatine-loading-calculator/"}]}</script>
+</head>
+<body>
+  <header class="header" id="site-header"></header>
+  <main>
+    <section class="calc-hero">
+      <div class="container">
+        <nav class="breadcrumb"><a href="/">Home</a> › <a href="/#categories">Calculators</a> › <a href="/#supplements-health">Supplements & Health</a> › Creatine Loading Calculator</nav>
+        <span class="category-badge">💊 Supplements & Health</span>
+        <h1>Creatine Loading Calculator</h1>
+        <p class="calc-description">Calculate your optimal creatine loading phase and maintenance dose based on your body weight.</p>
+      </div>
+    </section>
+    <section class="container calc-layout">
+      <div>
+        <div class="unit-toggle" id="unit-toggle"><button class="unit-btn active" data-unit="metric">Metric</button><button class="unit-btn" data-unit="imperial">Imperial</button></div>
+        <div class="calc-card">
+          <h2>Enter Your Details</h2>
+          <div class="input-group"><label for="weight">Body Weight</label><div class="input-row"><input type="number" id="weight" class="input-field" placeholder="e.g. 80" min="20" max="200" step="any"/><span class="input-unit">kg</span></div></div>
+          <div class="input-group"><label for="phase">Current Phase</label><select id="phase" class="input-field" style="cursor:pointer"><option value="loading" selected>Loading Phase (Days 1–5)</option><option value="maintenance">Maintenance Phase (Day 6+)</option><option value="no_loading">Maintenance Only (skip loading)</option></select></div>
+          <div class="input-group"><label for="form">Creatine Form</label><select id="form" class="input-field" style="cursor:pointer"><option value="monohydrate" selected>Creatine Monohydrate (standard)</option><option value="hcl">Creatine HCL (higher absorption)</option><option value="ethyl">Creatine Ethyl Ester</option></select></div>
+          <button class="calc-btn" id="calc-btn">Calculate</button>
+          <div class="calc-warning" id="calc-warning"></div>
+          <div class="result-section" id="result-section">
+            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0.75rem;margin-top:0.5rem"><div style="padding:1rem;border-radius:0.75rem;border:1px solid #e2e8f0;background:#fff"><div style="font-size:0.75rem;font-weight:600;text-transform:uppercase;color:#64748b;margin-bottom:0.25rem">Daily Dose</div><div style="font-size:1.5rem;font-weight:800;color:#0f172a" id="res-dose">--</div><div style="font-size:0.75rem;color:#64748b">grams/day</div></div><div style="padding:1rem;border-radius:0.75rem;border:1px solid #e2e8f0;background:#fff"><div style="font-size:0.75rem;font-weight:600;text-transform:uppercase;color:#64748b;margin-bottom:0.25rem">Serving Frequency</div><div style="font-size:1.5rem;font-weight:800;color:#0f172a" id="res-frequency">--</div><div style="font-size:0.75rem;color:#64748b">times/day</div></div><div style="padding:1rem;border-radius:0.75rem;border:1px solid #e2e8f0;background:#fff"><div style="font-size:0.75rem;font-weight:600;text-transform:uppercase;color:#64748b;margin-bottom:0.25rem">Per Serving</div><div style="font-size:1.5rem;font-weight:800;color:#0f172a" id="res-per_dose">--</div><div style="font-size:0.75rem;color:#64748b">grams</div></div><div style="padding:1rem;border-radius:0.75rem;border:1px solid #e2e8f0;background:#fff"><div style="font-size:0.75rem;font-weight:600;text-transform:uppercase;color:#64748b;margin-bottom:0.25rem">Loading Phase Duration</div><div style="font-size:1.5rem;font-weight:800;color:#0f172a" id="res-loading_end">--</div><div style="font-size:0.75rem;color:#64748b">days</div></div></div><div class="info-card" style="margin-top:1rem"><h3>Timing & Protocol</h3><p id="res-tip"></p></div>
+          </div>
+        </div>
+        
+      
+
+
+      <div class="share-bar"><span class="share-bar-label">Share this</span><div class="share-bar-buttons"><button class="share-btn share-btn-facebook" data-share="facebook" title="Share on Facebook"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg><span class="share-btn-text">Facebook</span></button><button class="share-btn share-btn-x" data-share="x" title="Share on X"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg><span class="share-btn-text">X</span></button><button class="share-btn share-btn-pinterest" data-share="pinterest" title="Save on Pinterest"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 0 1 .083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg><span class="share-btn-text">Pinterest</span></button><button class="share-btn share-btn-reddit" data-share="reddit" title="Share on Reddit"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/></svg><span class="share-btn-text">Reddit</span></button><button class="share-btn share-btn-copy" data-share="copy" title="Copy link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg><span class="share-btn-text">Copy link</span></button></div></div>
+
+      <div class="ad-unit" data-ad="calc-after-calculator"><span class="ad-label">Advertisement</span><div class="ad-box-responsive">Responsive Ad Space</div></div>
+
+            <div class="calc-seo-content">
+<h2>How the Creatine Loading Calculator Works</h2>
+          <p>The Creatine Loading Calculator personalises a dosage recommendation based on your body weight, activity level, and goal. Recommendations follow clinical research and dietary reference intakes from established health bodies. Where evidence supports weight-based dosing (as with creatine, protein, and electrolytes), the formula scales accordingly.</p><p>Dosing ranges shown reflect the evidence-based minimum effective dose to the upper safe limit. Starting at the lower end of a range and adjusting based on tolerance and response is generally the wisest approach.</p>
+
+          <h2>Frequently Asked Questions</h2>
+          <div class="faq-list">
+      <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <h3 itemprop="name">How is the recommended dose calculated?</h3>
+        <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <p itemprop="text">Dosage recommendations are based on clinical research, manufacturer guidelines, and dietary reference intakes established by bodies such as the NIH and EFSA. The calculator personalises the baseline dose using factors like bodyweight, activity level, and goal where evidence supports this approach.</p>
+        </div>
+      </div>
+    <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <h3 itemprop="name">Is it safe to take supplements?</h3>
+        <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <p itemprop="text">Most widely studied supplements are safe when taken within recommended doses. Individual responses vary, and some supplements interact with medications. Always consult a healthcare provider before beginning any supplementation, particularly if you take prescription drugs or have a pre-existing health condition.</p>
+        </div>
+      </div>
+    <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <h3 itemprop="name">Should I take this supplement with food or on an empty stomach?</h3>
+        <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <p itemprop="text">Timing and absorption depend on the specific supplement. Fat-soluble vitamins (A, D, E, K) and omega-3s absorb better with a meal containing fat. Others like caffeine and creatine work well regardless of food intake. The calculator's output notes and references cover timing where it's clinically significant.</p>
+        </div>
+      </div>
+    <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <h3 itemprop="name">Can I get this nutrient from food instead?</h3>
+        <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <p itemprop="text">For most micronutrients and many compounds (like omega-3s, calcium, and vitamin D), whole foods are the preferred source. Supplements fill gaps when dietary intake is insufficient. The recommendation is to optimise diet first, then use supplements to address specific deficiencies or performance needs.</p>
+        </div>
+      </div>
+    <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <h3 itemprop="name">How long does it take to see results?</h3>
+        <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <p itemprop="text">Timelines vary considerably by supplement and goal. Creatine loading protocols show performance effects within 5–7 days. Omega-3s take 4–8 weeks to meaningfully affect biomarkers. Vitamin D levels change slowly over months. Tracking baseline and follow-up measurements helps assess your individual response.</p>
+        </div>
+      </div>
+          </div>
+      </div>
+        <div class="ad-unit" data-ad="calc-after-content"><span class="ad-label">Advertisement</span><div class="ad-box-responsive">Responsive Ad Space</div></div>
+      </div>
+      <aside class="calc-sidebar">
+        <div class="sidebar-card"><h3>Creatine Evidence Summary</h3><table class="class-table"><thead><tr><th>Benefit</th><th>Evidence Level</th></tr></thead><tbody><tr><td>Strength increase</td><td>Strong</td></tr><tr><td>Power output</td><td>Strong</td></tr><tr><td>Muscle mass gain</td><td>Strong</td></tr><tr><td>Cognitive function</td><td>Moderate</td></tr><tr><td>Recovery speed</td><td>Moderate</td></tr><tr><td>Endurance sports</td><td>Weak</td></tr></tbody></table></div>
+        <div class="calc-ad" data-ad="calc-sidebar"><span>Sponsored</span>Advertisement</div>
+        <div class="sidebar-card"><h3>Related Calculators</h3><div class="related-list"><a href="/calculators/protein-powder-calculator/" class="related-item">🥛 Protein Powder</a><a href="/calculators/bcaa-calculator/" class="related-item">💊 BCAA Calculator</a><a href="/calculators/one-rep-max-epley/" class="related-item">🏋️ 1RM Calculator</a></div></div>
+      </aside>
+    </section>
+  
+    <!-- SEO Content Section -->
+</main>
+  <footer class="footer" id="site-footer"></footer>
+</body>
+</html>

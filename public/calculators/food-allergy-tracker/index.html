@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Food Sensitivity Tracker | Nutryio</title>
+  <meta name="description" content="Track symptoms against common trigger foods to identify potential food sensitivities."/>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+  <link rel="stylesheet" href="/style.css"/>
+  <link rel="stylesheet" href="/shared/calculator.css"/>
+  <script src="/shared/template.js" defer></script>
+  <script src="/shared/share.js" defer></script>
+  <script src="foodAllergyTracker.js" defer></script>
+  <link rel="canonical" href="https://nutryio.fit/calculators/food-allergy-tracker/"/>
+    <meta property="og:title" content="Food Sensitivity Tracker | Nutryio"/>
+    <meta property="og:description" content="Track symptoms against common trigger foods to identify potential food sensitivities."/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content="https://nutryio.fit/calculators/food-allergy-tracker/"/>
+    <meta property="og:site_name" content="Nutryio"/>
+    <meta property="og:image" content="https://nutryio.fit/opengraph.jpg"/>
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:title" content="Food Sensitivity Tracker | Nutryio"/>
+    <meta name="twitter:description" content="Track symptoms against common trigger foods to identify potential food sensitivities."/>
+    <meta name="twitter:image" content="https://nutryio.fit/opengraph.jpg"/>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Food Sensitivity Tracker","description":"Track symptoms against common trigger foods to identify potential food sensitivities.","url":"https://nutryio.fit/calculators/food-allergy-tracker/","applicationCategory":"HealthApplication","operatingSystem":"All","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"provider":{"@type":"Organization","name":"Nutryio","url":"https://nutryio.fit"}}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How accurate are the conversions and calculations?","acceptedAnswer":{"@type":"Answer","text":"All conversions use standardised culinary measurement values (US customary, metric, and UK imperial). Ingredient-specific calculations account for the fact that volume-to-weight ratios differ significantly between ingredients — a cup of flour weighs very differently from a cup of sugar."}},{"@type":"Question","name":"Why do cooking measurements differ between countries?","acceptedAnswer":{"@type":"Answer","text":"The US uses customary units (cups, tablespoons, Fahrenheit) while most of the world uses metric (grams, millilitres, Celsius). UK recipes historically use a mix, and Australian tablespoons differ from US tablespoons. This calculator handles all major regional standards."}},{"@type":"Question","name":"Can I use these calculations for baking?","acceptedAnswer":{"@type":"Answer","text":"Baking is particularly sensitive to precise measurements. Weight-based measurements (grams) are recommended over volume for baking because they are more accurate and repeatable. The calculator supports weight conversions specifically to help with precision baking."}},{"@type":"Question","name":"How do I scale a recipe up or down?","acceptedAnswer":{"@type":"Answer","text":"For most recipes, scaling ingredients linearly works well. However, cooking times, temperatures, and leavening agents do not always scale linearly — a recipe doubled in volume may take only 25% longer to cook, not twice as long. The calculator addresses scaling factors where they apply."}},{"@type":"Question","name":"Are the nutritional estimates accurate for recipes?","acceptedAnswer":{"@type":"Answer","text":"Nutritional estimates are based on standard USDA food composition data. Actual values vary by brand, preparation method, and cooking technique. Use the outputs as reliable guides for general dietary planning rather than clinical-grade precision."}}]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://nutryio.fit/"},{"@type":"ListItem","position":2,"name":"Calculators","item":"https://nutryio.fit/#categories"},{"@type":"ListItem","position":3,"name":"Food Sensitivity Tracker","item":"https://nutryio.fit/calculators/food-allergy-tracker/"}]}</script>
+</head>
+<body>
+  <header class="header" id="site-header"></header>
+  <main>
+    <section class="calc-hero">
+      <div class="container">
+        <nav class="breadcrumb"><a href="/">Home</a> › <a href="/#categories">Calculators</a> › <a href="/#food-nutrition-diet">Food Nutrition & Diet</a> › Food Sensitivity Tracker</nav>
+        <span class="category-badge">🍽️ Food Nutrition & Diet</span>
+        <h1>Food Sensitivity Tracker</h1>
+        <p class="calc-description">Track symptoms against common trigger foods to identify potential food sensitivities.</p>
+      </div>
+    </section>
+    <section class="container calc-layout">
+      <div>
+        
+        <div class="calc-card">
+          <h2>Describe Your Symptoms</h2>
+          <div class="input-group"><label for="symptom">Primary Symptom After Eating</label><select id="symptom" class="input-field" style="cursor:pointer"><option value="digestive" selected>Digestive issues (bloating, cramps, diarrhea)</option><option value="skin">Skin reaction (rash, hives, eczema)</option><option value="respiratory">Respiratory (runny nose, congestion, asthma)</option><option value="headache">Headache or migraine</option><option value="fatigue">Fatigue or brain fog</option><option value="joint">Joint pain or inflammation</option></select></div>
+<div class="input-group"><label for="timing">Symptom Onset After Eating</label><div class="input-row"><input type="number" id="timing" class="input-field" placeholder="e.g. 2" min="0.5" max="48" step="0.5"/><span class="input-unit">hours (0.5-48)</span></div></div>
+<div class="input-group"><label for="dairy">Symptoms After Dairy?</label><select id="dairy" class="input-field" style="cursor:pointer"><option value="yes">Always</option><option value="sometimes">Sometimes</option><option value="no" selected>No / Rarely</option></select></div>
+<div class="input-group"><label for="gluten">Symptoms After Wheat/Gluten?</label><select id="gluten" class="input-field" style="cursor:pointer"><option value="yes">Always</option><option value="sometimes">Sometimes</option><option value="no" selected>No / Rarely</option></select></div>
+<div class="input-group"><label for="fodmaps">Symptoms After Onions, Garlic, Legumes (FODMAPs)?</label><select id="fodmaps" class="input-field" style="cursor:pointer"><option value="yes">Always</option><option value="sometimes">Sometimes</option><option value="no" selected>No / Rarely</option></select></div>
+<div class="input-group"><label for="eggs">Symptoms After Eggs?</label><select id="eggs" class="input-field" style="cursor:pointer"><option value="yes">Always</option><option value="sometimes">Sometimes</option><option value="no" selected>No / Rarely</option></select></div>
+<div class="input-group"><label for="nuts">Symptoms After Nuts?</label><select id="nuts" class="input-field" style="cursor:pointer"><option value="yes">Always</option><option value="sometimes">Sometimes</option><option value="no" selected>No / Rarely</option></select></div>
+          <button class="calc-btn" id="calc-btn">Calculate</button>
+          <div class="calc-warning" id="calc-warning"></div>
+          <div class="result-section" id="result-section">
+            <div id="res-sensitivity-info" style="margin-top:0.5rem"></div>
+          </div>
+        </div>
+        
+      
+
+
+      <div class="share-bar"><span class="share-bar-label">Share this</span><div class="share-bar-buttons"><button class="share-btn share-btn-facebook" data-share="facebook" title="Share on Facebook"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg><span class="share-btn-text">Facebook</span></button><button class="share-btn share-btn-x" data-share="x" title="Share on X"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg><span class="share-btn-text">X</span></button><button class="share-btn share-btn-pinterest" data-share="pinterest" title="Save on Pinterest"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 0 1 .083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg><span class="share-btn-text">Pinterest</span></button><button class="share-btn share-btn-reddit" data-share="reddit" title="Share on Reddit"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/></svg><span class="share-btn-text">Reddit</span></button><button class="share-btn share-btn-copy" data-share="copy" title="Copy link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg><span class="share-btn-text">Copy link</span></button></div></div>
+
+      <div class="ad-unit" data-ad="calc-after-calculator"><span class="ad-label">Advertisement</span><div class="ad-box-responsive">Responsive Ad Space</div></div>
+
+            <div class="calc-seo-content">
+<h2>How the Food Sensitivity Tracker Works</h2>
+          <p>The Food Sensitivity Tracker applies standardised culinary conversion factors and cooking science principles to your inputs. Conversion values are sourced from internationally recognised culinary standards, and ingredient-specific adjustments are made where volume-to-weight ratios differ significantly between ingredients.</p><p>For baking especially, weight-based measurements (grams) are more accurate than volume (cups, tablespoons) because ingredient density varies. This calculator supports both approaches and converts between them where needed.</p>
+
+          <h2>Frequently Asked Questions</h2>
+          <div class="faq-list">
+      <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <h3 itemprop="name">How accurate are the conversions and calculations?</h3>
+        <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <p itemprop="text">All conversions use standardised culinary measurement values (US customary, metric, and UK imperial). Ingredient-specific calculations account for the fact that volume-to-weight ratios differ significantly between ingredients — a cup of flour weighs very differently from a cup of sugar.</p>
+        </div>
+      </div>
+    <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <h3 itemprop="name">Why do cooking measurements differ between countries?</h3>
+        <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <p itemprop="text">The US uses customary units (cups, tablespoons, Fahrenheit) while most of the world uses metric (grams, millilitres, Celsius). UK recipes historically use a mix, and Australian tablespoons differ from US tablespoons. This calculator handles all major regional standards.</p>
+        </div>
+      </div>
+    <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <h3 itemprop="name">Can I use these calculations for baking?</h3>
+        <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <p itemprop="text">Baking is particularly sensitive to precise measurements. Weight-based measurements (grams) are recommended over volume for baking because they are more accurate and repeatable. The calculator supports weight conversions specifically to help with precision baking.</p>
+        </div>
+      </div>
+    <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <h3 itemprop="name">How do I scale a recipe up or down?</h3>
+        <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <p itemprop="text">For most recipes, scaling ingredients linearly works well. However, cooking times, temperatures, and leavening agents do not always scale linearly — a recipe doubled in volume may take only 25% longer to cook, not twice as long. The calculator addresses scaling factors where they apply.</p>
+        </div>
+      </div>
+    <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <h3 itemprop="name">Are the nutritional estimates accurate for recipes?</h3>
+        <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <p itemprop="text">Nutritional estimates are based on standard USDA food composition data. Actual values vary by brand, preparation method, and cooking technique. Use the outputs as reliable guides for general dietary planning rather than clinical-grade precision.</p>
+        </div>
+      </div>
+          </div>
+      </div>
+        <div class="ad-unit" data-ad="calc-after-content"><span class="ad-label">Advertisement</span><div class="ad-box-responsive">Responsive Ad Space</div></div>
+      </div>
+      <aside class="calc-sidebar">
+        <div class="sidebar-card"><h3>Elimination Diet Protocol</h3><p style="font-size:0.875rem;color:var(--muted-foreground);line-height:1.6">Gold standard for identifying food sensitivities: (1) Eliminate suspect foods for 3-6 weeks, (2) Monitor symptoms closely, (3) Reintroduce one food at a time, 3 days apart, (4) Note any reaction within 48 hours. Work with a registered dietitian for best results.</p></div>
+        <div class="calc-ad" data-ad="calc-sidebar"><span>Sponsored</span>Advertisement</div>
+        <div class="sidebar-card"><h3>Related Calculators</h3><div class="related-list"><a href="/calculators/nutritional-balance-score/" class="related-item">⚖️ Nutritional Balance</a><a href="/calculators/processed-food-calculator/" class="related-item">🏭 Processed Food</a><a href="/calculators/anti-inflammatory-diet-score/" class="related-item">🔥 Anti-Inflammatory Score</a></div></div>
+      </aside>
+    </section>
+  
+    <!-- SEO Content Section -->
+</main>
+  <footer class="footer" id="site-footer"></footer>
+</body>
+</html>

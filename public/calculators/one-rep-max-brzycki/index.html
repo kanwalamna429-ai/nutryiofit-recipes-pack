@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>One Rep Max — Brzycki Formula | Nutryio</title>
+  <meta name="description" content="Calculate your 1RM using the Brzycki formula, known for accuracy in the 2–10 rep range."/>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+  <link rel="stylesheet" href="/style.css"/>
+  <link rel="stylesheet" href="/shared/calculator.css"/>
+  <script src="/shared/template.js" defer></script>
+  <script src="/shared/share.js" defer></script>
+  <script src="oneRepMaxBrzycki.js" defer></script>
+  <link rel="canonical" href="https://nutryio.fit/calculators/one-rep-max-brzycki/"/>
+    <meta property="og:title" content="One Rep Max — Brzycki Formula | Nutryio"/>
+    <meta property="og:description" content="Calculate your 1RM using the Brzycki formula, known for accuracy in the 2–10 rep range."/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content="https://nutryio.fit/calculators/one-rep-max-brzycki/"/>
+    <meta property="og:site_name" content="Nutryio"/>
+    <meta property="og:image" content="https://nutryio.fit/opengraph.jpg"/>
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:title" content="One Rep Max — Brzycki Formula | Nutryio"/>
+    <meta name="twitter:description" content="Calculate your 1RM using the Brzycki formula, known for accuracy in the 2–10 rep range."/>
+    <meta name="twitter:image" content="https://nutryio.fit/opengraph.jpg"/>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"One Rep Max — Brzycki Formula","description":"Calculate your 1RM using the Brzycki formula, known for accuracy in the 2–10 rep range.","url":"https://nutryio.fit/calculators/one-rep-max-brzycki/","applicationCategory":"HealthApplication","operatingSystem":"All","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"provider":{"@type":"Organization","name":"Nutryio","url":"https://nutryio.fit"}}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How is the calculation performed?","acceptedAnswer":{"@type":"Answer","text":"This calculator uses one or more of the established strength formulas — including Epley, Brzycki, and others — which were developed from large datasets of powerlifters and strength athletes. Each formula produces slightly different estimates, and the calculator typically shows the most conservative or averaged result."}},{"@type":"Question","name":"Is it safe to attempt my estimated maximum?","acceptedAnswer":{"@type":"Answer","text":"Maximum lifts carry inherent injury risk and should only be attempted with proper warm-up, technique, an experienced spotter, and appropriate equipment. The estimated value is primarily used for programming — setting training percentages — rather than as a goal to test directly."}},{"@type":"Question","name":"How does my bodyweight affect these numbers?","acceptedAnswer":{"@type":"Answer","text":"Bodyweight is a key factor in relative strength metrics. Heavier lifters tend to move more absolute weight, while lighter lifters often have higher strength-to-weight ratios. Bodyweight-adjusted metrics like Wilks, IPF Points, and DOTS allow fair comparison across weight classes."}},{"@type":"Question","name":"How do I use this to program my training?","acceptedAnswer":{"@type":"Answer","text":"Most strength programs use percentages of your estimated maximum (e.g., 70%, 80%, 85%) to prescribe working weights across different rep ranges. Programs like 5/3/1, Texas Method, and others are built around this percentage-based approach."}},{"@type":"Question","name":"How often should I recalculate?","acceptedAnswer":{"@type":"Answer","text":"Recalculate every 4–8 weeks as your strength progresses. Consistent progressive overload will improve your training max over time. Many lifters also use in-session performance (rep PR attempts at sub-max weights) to update estimates without attempting true maximums."}}]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://nutryio.fit/"},{"@type":"ListItem","position":2,"name":"Calculators","item":"https://nutryio.fit/#categories"},{"@type":"ListItem","position":3,"name":"One Rep Max — Brzycki Formula","item":"https://nutryio.fit/calculators/one-rep-max-brzycki/"}]}</script>
+</head>
+<body>
+  <header class="header" id="site-header"></header>
+  <main>
+    <section class="calc-hero">
+      <div class="container">
+        <nav class="breadcrumb"><a href="/">Home</a> › <a href="/#categories">Calculators</a> › <a href="/#strength-lifting">Strength & Lifting</a> › One Rep Max — Brzycki Formula</nav>
+        <span class="category-badge">🏋️ Strength & Lifting</span>
+        <h1>One Rep Max — Brzycki Formula</h1>
+        <p class="calc-description">Calculate your 1RM using the Brzycki formula, known for accuracy in the 2–10 rep range.</p>
+      </div>
+    </section>
+    <section class="container calc-layout">
+      <div>
+        
+        <div class="calc-card">
+          <h2>Enter Your Details</h2>
+          <div class="input-group"><label for="weight">Weight Lifted</label><div class="input-row"><input type="number" id="weight" class="input-field" placeholder="e.g. 100" min="1" max="1000" step="any"/><span class="input-unit">kg</span></div></div>
+          <div class="input-group"><label for="reps">Reps Performed</label><div class="input-row"><input type="number" id="reps" class="input-field" placeholder="e.g. 5" min="1" max="30" step="1"/><span class="input-unit">reps</span></div></div>
+          <button class="calc-btn" id="calc-btn">Calculate</button>
+          <div class="calc-warning" id="calc-warning"></div>
+          <div class="result-section" id="result-section">
+            <div class="result-number" id="res-1rm">--</div><div style="font-size:1rem;color:#64748b;margin-top:0.25rem">kg estimated 1RM</div><div class="info-card" style="margin-top:1rem"><h3>Comparison of Formulas</h3><p id="res-detail"></p></div><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0.75rem;margin-top:0.5rem"><div style="padding:1rem;border-radius:0.75rem;border:1px solid #e2e8f0;background:#fff"><div style="font-size:0.75rem;font-weight:600;text-transform:uppercase;color:#64748b;margin-bottom:0.25rem">Epley Formula</div><div style="font-size:1.5rem;font-weight:800;color:#0f172a" id="res-epley">--</div><div style="font-size:0.75rem;color:#64748b">kg</div></div><div style="padding:1rem;border-radius:0.75rem;border:1px solid #e2e8f0;background:#fff"><div style="font-size:0.75rem;font-weight:600;text-transform:uppercase;color:#64748b;margin-bottom:0.25rem">Lander Formula</div><div style="font-size:1.5rem;font-weight:800;color:#0f172a" id="res-lander">--</div><div style="font-size:0.75rem;color:#64748b">kg</div></div><div style="padding:1rem;border-radius:0.75rem;border:1px solid #e2e8f0;background:#fff"><div style="font-size:0.75rem;font-weight:600;text-transform:uppercase;color:#64748b;margin-bottom:0.25rem">O'Conner Formula</div><div style="font-size:1.5rem;font-weight:800;color:#0f172a" id="res-oconner">--</div><div style="font-size:0.75rem;color:#64748b">kg</div></div></div>
+          </div>
+        </div>
+        
+      
+
+
+      <div class="share-bar"><span class="share-bar-label">Share this</span><div class="share-bar-buttons"><button class="share-btn share-btn-facebook" data-share="facebook" title="Share on Facebook"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg><span class="share-btn-text">Facebook</span></button><button class="share-btn share-btn-x" data-share="x" title="Share on X"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg><span class="share-btn-text">X</span></button><button class="share-btn share-btn-pinterest" data-share="pinterest" title="Save on Pinterest"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 0 1 .083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg><span class="share-btn-text">Pinterest</span></button><button class="share-btn share-btn-reddit" data-share="reddit" title="Share on Reddit"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/></svg><span class="share-btn-text">Reddit</span></button><button class="share-btn share-btn-copy" data-share="copy" title="Copy link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg><span class="share-btn-text">Copy link</span></button></div></div>
+
+      <div class="ad-unit" data-ad="calc-after-calculator"><span class="ad-label">Advertisement</span><div class="ad-box-responsive">Responsive Ad Space</div></div>
+
+            <div class="calc-seo-content">
+<h2>How the One Rep Max — Brzycki Formula Works</h2>
+          <p>The One Rep Max — Brzycki Formula uses one or more validated strength formulas — Epley, Brzycki, Lombardi, or others — to estimate a strength benchmark from your input data. These equations were developed from large datasets of competitive and recreational lifters and are standard in strength and conditioning programming.</p><p>Use the result to set percentage-based training weights across your program. Most strength programs prescribe work at 60–85% of your estimated maximum, building volume and intensity progressively.</p>
+
+          <h2>Frequently Asked Questions</h2>
+          <div class="faq-list">
+      <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <h3 itemprop="name">How is the calculation performed?</h3>
+        <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <p itemprop="text">This calculator uses one or more of the established strength formulas — including Epley, Brzycki, and others — which were developed from large datasets of powerlifters and strength athletes. Each formula produces slightly different estimates, and the calculator typically shows the most conservative or averaged result.</p>
+        </div>
+      </div>
+    <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <h3 itemprop="name">Is it safe to attempt my estimated maximum?</h3>
+        <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <p itemprop="text">Maximum lifts carry inherent injury risk and should only be attempted with proper warm-up, technique, an experienced spotter, and appropriate equipment. The estimated value is primarily used for programming — setting training percentages — rather than as a goal to test directly.</p>
+        </div>
+      </div>
+    <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <h3 itemprop="name">How does my bodyweight affect these numbers?</h3>
+        <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <p itemprop="text">Bodyweight is a key factor in relative strength metrics. Heavier lifters tend to move more absolute weight, while lighter lifters often have higher strength-to-weight ratios. Bodyweight-adjusted metrics like Wilks, IPF Points, and DOTS allow fair comparison across weight classes.</p>
+        </div>
+      </div>
+    <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <h3 itemprop="name">How do I use this to program my training?</h3>
+        <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <p itemprop="text">Most strength programs use percentages of your estimated maximum (e.g., 70%, 80%, 85%) to prescribe working weights across different rep ranges. Programs like 5/3/1, Texas Method, and others are built around this percentage-based approach.</p>
+        </div>
+      </div>
+    <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <h3 itemprop="name">How often should I recalculate?</h3>
+        <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <p itemprop="text">Recalculate every 4–8 weeks as your strength progresses. Consistent progressive overload will improve your training max over time. Many lifters also use in-session performance (rep PR attempts at sub-max weights) to update estimates without attempting true maximums.</p>
+        </div>
+      </div>
+          </div>
+      </div>
+        <div class="ad-unit" data-ad="calc-after-content"><span class="ad-label">Advertisement</span><div class="ad-box-responsive">Responsive Ad Space</div></div>
+      </div>
+      <aside class="calc-sidebar">
+        <div class="sidebar-card"><h3>Which Formula is Best?</h3><p style="font-size:0.875rem;color:var(--muted-foreground);line-height:1.6">The Epley and Brzycki formulas give similar results for low rep ranges (2–6). For higher reps (7–10), Epley tends to slightly overestimate. For accuracy, test reps between 3–6 at a challenging but submaximal weight.</p></div>
+        <div class="calc-ad" data-ad="calc-sidebar"><span>Sponsored</span>Advertisement</div>
+        <div class="sidebar-card"><h3>Related Calculators</h3><div class="related-list"><a href="/calculators/one-rep-max-epley/" class="related-item">🏋️ 1RM Epley Formula</a><a href="/calculators/training-max-calculator/" class="related-item">📊 Training Max</a><a href="/calculators/rpe-to-percent-calculator/" class="related-item">💯 RPE to Percent</a></div></div>
+      </aside>
+    </section>
+  
+    <!-- SEO Content Section -->
+</main>
+  <footer class="footer" id="site-footer"></footer>
+</body>
+</html>

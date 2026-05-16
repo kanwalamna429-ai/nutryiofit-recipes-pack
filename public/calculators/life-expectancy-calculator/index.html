@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Life Expectancy Calculator | Nutryio</title>
+  <meta name="description" content="Estimate your life expectancy based on your age, sex, and key lifestyle factors from actuarial research."/>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+  <link rel="stylesheet" href="/style.css"/>
+  <link rel="stylesheet" href="/shared/calculator.css"/>
+  <script src="/shared/template.js" defer></script>
+  <script src="/shared/share.js" defer></script>
+  <script src="lifeExpectancyCalculator.js" defer></script>
+  <link rel="canonical" href="https://nutryio.fit/calculators/life-expectancy-calculator/"/>
+    <meta property="og:title" content="Life Expectancy Calculator | Nutryio"/>
+    <meta property="og:description" content="Estimate your life expectancy based on your age, sex, and key lifestyle factors from actuarial research."/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content="https://nutryio.fit/calculators/life-expectancy-calculator/"/>
+    <meta property="og:site_name" content="Nutryio"/>
+    <meta property="og:image" content="https://nutryio.fit/opengraph.jpg"/>
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:title" content="Life Expectancy Calculator | Nutryio"/>
+    <meta name="twitter:description" content="Estimate your life expectancy based on your age, sex, and key lifestyle factors from actuarial research."/>
+    <meta name="twitter:image" content="https://nutryio.fit/opengraph.jpg"/>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Life Expectancy Calculator","description":"Estimate your life expectancy based on your age, sex, and key lifestyle factors from actuarial research.","url":"https://nutryio.fit/calculators/life-expectancy-calculator/","applicationCategory":"HealthApplication","operatingSystem":"All","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"provider":{"@type":"Organization","name":"Nutryio","url":"https://nutryio.fit"}}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How is the estimate calculated?","acceptedAnswer":{"@type":"Answer","text":"The calculation draws on longitudinal growth studies, population health data, and actuarial research. Results reflect statistical probabilities based on large populations and should be interpreted as informative estimates rather than individual predictions, as genetics and lifestyle have significant influence."}},{"@type":"Question","name":"What factors have the biggest impact on healthy aging and longevity?","acceptedAnswer":{"@type":"Answer","text":"Research consistently highlights physical activity, diet quality, sleep, stress management, social connection, and not smoking as the most impactful modifiable factors. Genetics plays a role, but lifestyle choices significantly influence both lifespan and healthspan (years in good health)."}},{"@type":"Question","name":"Can the result be improved?","acceptedAnswer":{"@type":"Answer","text":"For growth-related calculators, the prediction reflects biological potential based on genetics and current development. For longevity and biological age calculators, yes — lifestyle improvements in diet, exercise, sleep, and stress management can meaningfully shift the estimate in a more favourable direction."}},{"@type":"Question","name":"How accurate are height prediction calculators?","acceptedAnswer":{"@type":"Answer","text":"Height prediction formulas based on parental height (like the mid-parental height method) typically predict within a range of ±5–7 cm (2–3 inches) of actual adult height. They're useful for setting realistic expectations but cannot account fully for nutritional, hormonal, or environmental factors."}},{"@type":"Question","name":"At what age should I stop monitoring growth metrics?","acceptedAnswer":{"@type":"Answer","text":"Most individuals reach skeletal maturity by their early 20s. After that, body composition, metabolic age, and biological age metrics become more relevant than growth-based indicators. The Nutryio calculator library includes tools for all life stages."}}]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://nutryio.fit/"},{"@type":"ListItem","position":2,"name":"Calculators","item":"https://nutryio.fit/#categories"},{"@type":"ListItem","position":3,"name":"Life Expectancy Calculator","item":"https://nutryio.fit/calculators/life-expectancy-calculator/"}]}</script>
+</head>
+<body>
+  <header class="header" id="site-header"></header>
+  <main>
+    <section class="calc-hero">
+      <div class="container">
+        <nav class="breadcrumb"><a href="/">Home</a> › <a href="/#categories">Calculators</a> › <a href="/#age-growth">Age & Growth</a> › Life Expectancy Calculator</nav>
+        <span class="category-badge">🧒 Age & Growth</span>
+        <h1>Life Expectancy Calculator</h1>
+        <p class="calc-description">Estimate your life expectancy based on your age, sex, and key lifestyle factors from actuarial research.</p>
+      </div>
+    </section>
+    <section class="container calc-layout">
+      <div>
+        <div class="unit-toggle" id="gender-toggle" style="margin-left:0.5rem"><button class="unit-btn active" data-gender="male">Male</button><button class="unit-btn" data-gender="female">Female</button></div>
+        <div class="calc-card">
+          <h2>Enter Your Details</h2>
+          <div class="input-group"><label for="age">Current Age</label><div class="input-row"><input type="number" id="age" class="input-field" placeholder="e.g. 40" min="18" max="90" step="1"/><span class="input-unit">years</span></div></div>
+          <div class="input-group"><label for="smoking">Smoking</label><select id="smoking" class="input-field" style="cursor:pointer"><option value="never" selected>Never smoked</option><option value="former">Former smoker (quit < 10y)</option><option value="quit_long">Former smoker (quit > 10y)</option><option value="current_light">Light smoker (< 10/day)</option><option value="current_heavy">Heavy smoker (10+/day)</option></select></div>
+          <div class="input-group"><label for="bmi_range">BMI Range</label><select id="bmi_range" class="input-field" style="cursor:pointer"><option value="underweight">Underweight (< 18.5)</option><option value="normal" selected>Normal (18.5–24.9)</option><option value="overweight">Overweight (25–29.9)</option><option value="obese1">Obese I (30–34.9)</option><option value="obese2">Obese II+ (35+)</option></select></div>
+          <div class="input-group"><label for="exercise">Exercise Level</label><select id="exercise" class="input-field" style="cursor:pointer"><option value="none">No regular exercise</option><option value="light">Light (1-2x/week)</option><option value="moderate" selected>Moderate (3-5x/week)</option><option value="intense">Daily intensive</option></select></div>
+          <div class="input-group"><label for="alcohol">Alcohol Use</label><select id="alcohol" class="input-field" style="cursor:pointer"><option value="none">No alcohol</option><option value="moderate" selected>Moderate (< 14 drinks/week)</option><option value="heavy">Heavy (14+ drinks/week)</option></select></div>
+          <div class="input-group"><label for="chronic">Chronic Conditions</label><select id="chronic" class="input-field" style="cursor:pointer"><option value="none" selected>None</option><option value="one">1 managed condition</option><option value="multiple">2+ conditions</option><option value="severe">Severe / Unmanaged</option></select></div>
+          <button class="calc-btn" id="calc-btn">Calculate</button>
+          <div class="calc-warning" id="calc-warning"></div>
+          <div class="result-section" id="result-section">
+            <div class="result-number" id="res-expected">--</div><div style="font-size:1rem;color:#64748b;margin-top:0.25rem">years Estimated Life Expectancy</div><div class="info-card" style="margin-top:1rem"><h3>Years Remaining</h3><p id="res-remaining"></p></div><div style="display:grid;grid-template-columns:repeat(2,1fr);gap:0.75rem;margin-top:0.5rem"><div style="padding:1rem;border-radius:0.75rem;border:1px solid #e2e8f0;background:#fff"><div style="font-size:0.75rem;font-weight:600;text-transform:uppercase;color:#64748b;margin-bottom:0.25rem">Base Life Expectancy</div><div style="font-size:1.5rem;font-weight:800;color:#0f172a" id="res-base">--</div><div style="font-size:0.75rem;color:#64748b">years</div></div><div style="padding:1rem;border-radius:0.75rem;border:1px solid #e2e8f0;background:#fff"><div style="font-size:0.75rem;font-weight:600;text-transform:uppercase;color:#64748b;margin-bottom:0.25rem">Lifestyle Adjustment</div><div style="font-size:1.5rem;font-weight:800;color:#0f172a" id="res-adj">--</div><div style="font-size:0.75rem;color:#64748b">years</div></div></div>
+          </div>
+        </div>
+        
+      
+
+
+      <div class="share-bar"><span class="share-bar-label">Share this</span><div class="share-bar-buttons"><button class="share-btn share-btn-facebook" data-share="facebook" title="Share on Facebook"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg><span class="share-btn-text">Facebook</span></button><button class="share-btn share-btn-x" data-share="x" title="Share on X"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg><span class="share-btn-text">X</span></button><button class="share-btn share-btn-pinterest" data-share="pinterest" title="Save on Pinterest"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 0 1 .083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg><span class="share-btn-text">Pinterest</span></button><button class="share-btn share-btn-reddit" data-share="reddit" title="Share on Reddit"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/></svg><span class="share-btn-text">Reddit</span></button><button class="share-btn share-btn-copy" data-share="copy" title="Copy link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg><span class="share-btn-text">Copy link</span></button></div></div>
+
+      <div class="ad-unit" data-ad="calc-after-calculator"><span class="ad-label">Advertisement</span><div class="ad-box-responsive">Responsive Ad Space</div></div>
+
+            <div class="calc-seo-content">
+<h2>How the Life Expectancy Calculator Works</h2>
+          <p>The Life Expectancy Calculator draws on population health studies, growth charts, and actuarial data to estimate a metric related to biological development or ageing. Your key inputs — age, sex, measurements, and lifestyle factors — are evaluated against data from large longitudinal research cohorts.</p><p>The output reflects statistical patterns and should be interpreted as a probability-based estimate rather than a fixed prediction. Lifestyle choices, particularly in the areas of nutrition, exercise, sleep, and stress, have meaningful influence on biological age outcomes.</p>
+
+          <h2>Frequently Asked Questions</h2>
+          <div class="faq-list">
+      <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <h3 itemprop="name">How is the estimate calculated?</h3>
+        <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <p itemprop="text">The calculation draws on longitudinal growth studies, population health data, and actuarial research. Results reflect statistical probabilities based on large populations and should be interpreted as informative estimates rather than individual predictions, as genetics and lifestyle have significant influence.</p>
+        </div>
+      </div>
+    <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <h3 itemprop="name">What factors have the biggest impact on healthy aging and longevity?</h3>
+        <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <p itemprop="text">Research consistently highlights physical activity, diet quality, sleep, stress management, social connection, and not smoking as the most impactful modifiable factors. Genetics plays a role, but lifestyle choices significantly influence both lifespan and healthspan (years in good health).</p>
+        </div>
+      </div>
+    <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <h3 itemprop="name">Can the result be improved?</h3>
+        <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <p itemprop="text">For growth-related calculators, the prediction reflects biological potential based on genetics and current development. For longevity and biological age calculators, yes — lifestyle improvements in diet, exercise, sleep, and stress management can meaningfully shift the estimate in a more favourable direction.</p>
+        </div>
+      </div>
+    <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <h3 itemprop="name">How accurate are height prediction calculators?</h3>
+        <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <p itemprop="text">Height prediction formulas based on parental height (like the mid-parental height method) typically predict within a range of ±5–7 cm (2–3 inches) of actual adult height. They're useful for setting realistic expectations but cannot account fully for nutritional, hormonal, or environmental factors.</p>
+        </div>
+      </div>
+    <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <h3 itemprop="name">At what age should I stop monitoring growth metrics?</h3>
+        <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <p itemprop="text">Most individuals reach skeletal maturity by their early 20s. After that, body composition, metabolic age, and biological age metrics become more relevant than growth-based indicators. The Nutryio calculator library includes tools for all life stages.</p>
+        </div>
+      </div>
+          </div>
+      </div>
+        <div class="ad-unit" data-ad="calc-after-content"><span class="ad-label">Advertisement</span><div class="ad-box-responsive">Responsive Ad Space</div></div>
+      </div>
+      <aside class="calc-sidebar">
+        <div class="sidebar-card"><h3>Lifestyle Impact on Life Expectancy</h3><table class="class-table"><thead><tr><th>Factor</th><th>Years Gained/Lost</th></tr></thead><tbody><tr><td>Regular exercise</td><td>+2 to +4 years</td></tr><tr><td>Never smoking</td><td>+8 to +10 years vs heavy smoker</td></tr><tr><td>Healthy weight</td><td>+2 to +3 years vs obese</td></tr><tr><td>Moderate alcohol</td><td>+1 year vs heavy</td></tr><tr><td>No chronic disease</td><td>+4 to +7 years</td></tr></tbody></table></div>
+        <div class="calc-ad" data-ad="calc-sidebar"><span>Sponsored</span>Advertisement</div>
+        <div class="sidebar-card"><h3>Related Calculators</h3><div class="related-list"><a href="/calculators/biological-age-calculator/" class="related-item">🧬 Biological Age</a><a href="/calculators/longevity-score-calculator/" class="related-item">🌱 Longevity Score</a><a href="/calculators/bmi-calculator/" class="related-item">🧍 BMI Calculator</a></div></div>
+      </aside>
+    </section>
+  
+    <!-- SEO Content Section -->
+</main>
+  <footer class="footer" id="site-footer"></footer>
+</body>
+</html>
