@@ -9,41 +9,10 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
-import { Route as SitemapRecipesDotxmlRouteImport } from './routes/sitemap-recipes[.]xml'
-import { Route as SitemapMiscDotxmlRouteImport } from './routes/sitemap-misc[.]xml'
-import { Route as SitemapCalculatorsDotxmlRouteImport } from './routes/sitemap-calculators[.]xml'
-import { Route as SitemapBlogDotxmlRouteImport } from './routes/sitemap-blog[.]xml'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ApiNewsletterRouteImport } from './routes/api/newsletter'
 import { Route as ApiContactRouteImport } from './routes/api/contact'
 
-const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
-  id: '/sitemap.xml',
-  path: '/sitemap.xml',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SitemapRecipesDotxmlRoute = SitemapRecipesDotxmlRouteImport.update({
-  id: '/sitemap-recipes.xml',
-  path: '/sitemap-recipes.xml',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SitemapMiscDotxmlRoute = SitemapMiscDotxmlRouteImport.update({
-  id: '/sitemap-misc.xml',
-  path: '/sitemap-misc.xml',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SitemapCalculatorsDotxmlRoute =
-  SitemapCalculatorsDotxmlRouteImport.update({
-    id: '/sitemap-calculators.xml',
-    path: '/sitemap-calculators.xml',
-    getParentRoute: () => rootRouteImport,
-  } as any)
-const SitemapBlogDotxmlRoute = SitemapBlogDotxmlRouteImport.update({
-  id: '/sitemap-blog.xml',
-  path: '/sitemap-blog.xml',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -62,116 +31,36 @@ const ApiContactRoute = ApiContactRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/sitemap-blog.xml': typeof SitemapBlogDotxmlRoute
-  '/sitemap-calculators.xml': typeof SitemapCalculatorsDotxmlRoute
-  '/sitemap-misc.xml': typeof SitemapMiscDotxmlRoute
-  '/sitemap-recipes.xml': typeof SitemapRecipesDotxmlRoute
-  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/api/contact': typeof ApiContactRoute
   '/api/newsletter': typeof ApiNewsletterRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/sitemap-blog.xml': typeof SitemapBlogDotxmlRoute
-  '/sitemap-calculators.xml': typeof SitemapCalculatorsDotxmlRoute
-  '/sitemap-misc.xml': typeof SitemapMiscDotxmlRoute
-  '/sitemap-recipes.xml': typeof SitemapRecipesDotxmlRoute
-  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/api/contact': typeof ApiContactRoute
   '/api/newsletter': typeof ApiNewsletterRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/sitemap-blog.xml': typeof SitemapBlogDotxmlRoute
-  '/sitemap-calculators.xml': typeof SitemapCalculatorsDotxmlRoute
-  '/sitemap-misc.xml': typeof SitemapMiscDotxmlRoute
-  '/sitemap-recipes.xml': typeof SitemapRecipesDotxmlRoute
-  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/api/contact': typeof ApiContactRoute
   '/api/newsletter': typeof ApiNewsletterRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths:
-    | '/'
-    | '/sitemap-blog.xml'
-    | '/sitemap-calculators.xml'
-    | '/sitemap-misc.xml'
-    | '/sitemap-recipes.xml'
-    | '/sitemap.xml'
-    | '/api/contact'
-    | '/api/newsletter'
+  fullPaths: '/' | '/api/contact' | '/api/newsletter'
   fileRoutesByTo: FileRoutesByTo
-  to:
-    | '/'
-    | '/sitemap-blog.xml'
-    | '/sitemap-calculators.xml'
-    | '/sitemap-misc.xml'
-    | '/sitemap-recipes.xml'
-    | '/sitemap.xml'
-    | '/api/contact'
-    | '/api/newsletter'
-  id:
-    | '__root__'
-    | '/'
-    | '/sitemap-blog.xml'
-    | '/sitemap-calculators.xml'
-    | '/sitemap-misc.xml'
-    | '/sitemap-recipes.xml'
-    | '/sitemap.xml'
-    | '/api/contact'
-    | '/api/newsletter'
+  to: '/' | '/api/contact' | '/api/newsletter'
+  id: '__root__' | '/' | '/api/contact' | '/api/newsletter'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  SitemapBlogDotxmlRoute: typeof SitemapBlogDotxmlRoute
-  SitemapCalculatorsDotxmlRoute: typeof SitemapCalculatorsDotxmlRoute
-  SitemapMiscDotxmlRoute: typeof SitemapMiscDotxmlRoute
-  SitemapRecipesDotxmlRoute: typeof SitemapRecipesDotxmlRoute
-  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   ApiContactRoute: typeof ApiContactRoute
   ApiNewsletterRoute: typeof ApiNewsletterRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/sitemap.xml': {
-      id: '/sitemap.xml'
-      path: '/sitemap.xml'
-      fullPath: '/sitemap.xml'
-      preLoaderRoute: typeof SitemapDotxmlRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/sitemap-recipes.xml': {
-      id: '/sitemap-recipes.xml'
-      path: '/sitemap-recipes.xml'
-      fullPath: '/sitemap-recipes.xml'
-      preLoaderRoute: typeof SitemapRecipesDotxmlRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/sitemap-misc.xml': {
-      id: '/sitemap-misc.xml'
-      path: '/sitemap-misc.xml'
-      fullPath: '/sitemap-misc.xml'
-      preLoaderRoute: typeof SitemapMiscDotxmlRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/sitemap-calculators.xml': {
-      id: '/sitemap-calculators.xml'
-      path: '/sitemap-calculators.xml'
-      fullPath: '/sitemap-calculators.xml'
-      preLoaderRoute: typeof SitemapCalculatorsDotxmlRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/sitemap-blog.xml': {
-      id: '/sitemap-blog.xml'
-      path: '/sitemap-blog.xml'
-      fullPath: '/sitemap-blog.xml'
-      preLoaderRoute: typeof SitemapBlogDotxmlRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/': {
       id: '/'
       path: '/'
@@ -198,11 +87,6 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  SitemapBlogDotxmlRoute: SitemapBlogDotxmlRoute,
-  SitemapCalculatorsDotxmlRoute: SitemapCalculatorsDotxmlRoute,
-  SitemapMiscDotxmlRoute: SitemapMiscDotxmlRoute,
-  SitemapRecipesDotxmlRoute: SitemapRecipesDotxmlRoute,
-  SitemapDotxmlRoute: SitemapDotxmlRoute,
   ApiContactRoute: ApiContactRoute,
   ApiNewsletterRoute: ApiNewsletterRoute,
 }
