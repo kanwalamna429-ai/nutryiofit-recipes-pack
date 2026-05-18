@@ -8,7 +8,7 @@
  *  1. Scans `public/` recursively for every `index.html` file.
  *  2. Converts each file path into a clean canonical URL (no `.html`, trailing `/`).
  *  3. De-duplicates, then writes:
- *       - public/sitemap.xml   (UTF-8, application/xml, splits >50k URLs automatically)
+ *       - public/sitemap.xml   (UTF-8, application/xml, direct URL set under 50k URLs)
  *       - public/robots.txt    (with Sitemap directive)
  *
  * This runs automatically before every build via the `prebuild` npm script,
@@ -16,10 +16,12 @@
  * The files are emitted into `public/` so Vite copies them into the final
  * build output (`dist/` -> served at the site root).
  *
- * Scales to 50,000 URLs per sitemap (sitemaps.org limit). The `sitemap`
- * package handles splitting + index generation if exceeded.
+ * Most builds produce one direct /sitemap.xml containing all URLs, which is
+ * the simplest and most reliable format for Google Search Console. If the
+ * site grows beyond 50,000 URLs, the `sitemap` package automatically switches
+ * to a sitemap index plus sitemap-N.xml shards to stay within protocol limits.
  */
-import { SitemapAndIndexStream, SitemapStream } from "sitemap";
+import { SitemapAndIndexStream, SitemapStream, streamToPromise } from "sitemap";
 import { createWriteStream } from "node:fs";
 import { writeFile, mkdir, rm } from "node:fs/promises";
 import { resolve, dirname, relative, sep, posix } from "node:path";
