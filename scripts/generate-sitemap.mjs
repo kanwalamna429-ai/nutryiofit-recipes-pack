@@ -8,7 +8,7 @@
  *  1. Scans `public/` recursively for every `index.html` file.
  *  2. Converts each file path into a clean canonical URL (no `.html`, trailing `/`).
  *  3. De-duplicates, then writes:
- *       - public/sitemap.xml   (UTF-8, application/xml, splits >50k URLs automatically)
+ *       - public/sitemap.xml   (UTF-8, application/xml, direct URL set under 50k URLs)
  *       - public/robots.txt    (with Sitemap directive)
  *
  * This runs automatically before every build via the `prebuild` npm script,
@@ -16,13 +16,16 @@
  * The files are emitted into `public/` so Vite copies them into the final
  * build output (`dist/` -> served at the site root).
  *
- * Scales to 50,000 URLs per sitemap (sitemaps.org limit). The `sitemap`
- * package handles splitting + index generation if exceeded.
+ * Most builds produce one direct /sitemap.xml containing all URLs, which is
+ * the simplest and most reliable format for Google Search Console. If the
+ * site grows beyond 50,000 URLs, the `sitemap` package automatically switches
+ * to a sitemap index plus sitemap-N.xml shards to stay within protocol limits.
  */
-import { SitemapAndIndexStream, SitemapStream } from "sitemap";
+import { SitemapAndIndexStream, SitemapStream, streamToPromise } from "sitemap";
 import { createWriteStream } from "node:fs";
 import { writeFile, mkdir, rm } from "node:fs/promises";
 import { resolve, dirname, relative, sep, posix } from "node:path";
+import { Readable } from "node:stream";
 import { fileURLToPath } from "node:url";
 import fg from "fast-glob";
 
@@ -92,7 +95,7 @@ async function collectUrls() {
   return urls;
 }
 
-async function writeSitemap(urls) {
+async function writeSitemapIndex(urls) {
   // Clean any previously generated sub-sitemaps so old ones don't linger.
   await rm(resolve(PUBLIC_DIR, "sitemap-0.xml"), { force: true });
   for (let i = 0; i < 20; i++) {
@@ -102,8 +105,7 @@ async function writeSitemap(urls) {
   await mkdir(PUBLIC_DIR, { recursive: true });
 
   // SitemapAndIndexStream auto-splits at 50k URLs (the sitemaps.org limit).
-  // For our current ~2.5k URLs it produces a single sitemap-0.xml plus an
-  // index at sitemap.xml. Both are valid for Google Search Console.
+  // This fallback is only used once the static site exceeds one sitemap file.
   const sms = new SitemapAndIndexStream({
     limit: 50000,
     getSitemapStream: (i) => {
@@ -131,6 +133,28 @@ async function writeSitemap(urls) {
   });
 }
 
+async function writeSitemap(urls) {
+  // Clean generated shard files first so Google never sees stale sitemap index
+  // references after the site shrinks or returns to a single direct sitemap.
+  for (let i = 0; i < 20; i++) {
+    await rm(resolve(PUBLIC_DIR, `sitemap-${i}.xml`), { force: true });
+  }
+
+  await mkdir(PUBLIC_DIR, { recursive: true });
+
+  if (urls.length > 50000) {
+    await writeSitemapIndex(urls);
+    return;
+  }
+
+  // For this static website, write a plain XML <urlset> directly at
+  // /sitemap.xml. Avoiding a sitemap index removes one extra fetch step and is
+  // the most crawler-compatible setup for Search Console.
+  const smStream = new SitemapStream({ hostname: HOSTNAME });
+  const sitemapXml = await streamToPromise(Readable.from(urls).pipe(smStream));
+  await writeFile(resolve(PUBLIC_DIR, "sitemap.xml"), sitemapXml.toString(), "utf8");
+}
+
 async function writeRobots() {
   const robots = [
     "User-agent: *",
@@ -147,7 +171,9 @@ async function main() {
   await writeSitemap(urls);
   await writeRobots();
   console.log(
-    `[sitemap] ${urls.length} URLs written to public/sitemap.xml (+ sitemap-N.xml shards)`,
+    urls.length > 50000
+      ? `[sitemap] ${urls.length} URLs written to public/sitemap.xml index (+ sitemap-N.xml shards)`
+      : `[sitemap] ${urls.length} URLs written directly to public/sitemap.xml`,
   );
 }
 
