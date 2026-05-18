@@ -2,7 +2,3 @@ User-agent: *
 Allow: /
 
 Sitemap: https://nutryio.fit/sitemap.xml
-Sitemap: https://nutryio.fit/sitemap-misc.xml
-Sitemap: https://nutryio.fit/sitemap-blog.xml
-Sitemap: https://nutryio.fit/sitemap-calculators.xml
-Sitemap: https://nutryio.fit/sitemap-recipes.xml
