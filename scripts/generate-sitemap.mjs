@@ -171,7 +171,9 @@ async function main() {
   await writeSitemap(urls);
   await writeRobots();
   console.log(
-    `[sitemap] ${urls.length} URLs written to public/sitemap.xml (+ sitemap-N.xml shards)`,
+    urls.length > 50000
+      ? `[sitemap] ${urls.length} URLs written to public/sitemap.xml index (+ sitemap-N.xml shards)`
+      : `[sitemap] ${urls.length} URLs written directly to public/sitemap.xml`,
   );
 }
 
