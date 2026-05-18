@@ -94,7 +94,7 @@ async function collectUrls() {
   return urls;
 }
 
-async function writeSitemap(urls) {
+async function writeSitemapIndex(urls) {
   // Clean any previously generated sub-sitemaps so old ones don't linger.
   await rm(resolve(PUBLIC_DIR, "sitemap-0.xml"), { force: true });
   for (let i = 0; i < 20; i++) {
@@ -104,8 +104,7 @@ async function writeSitemap(urls) {
   await mkdir(PUBLIC_DIR, { recursive: true });
 
   // SitemapAndIndexStream auto-splits at 50k URLs (the sitemaps.org limit).
-  // For our current ~2.5k URLs it produces a single sitemap-0.xml plus an
-  // index at sitemap.xml. Both are valid for Google Search Console.
+  // This fallback is only used once the static site exceeds one sitemap file.
   const sms = new SitemapAndIndexStream({
     limit: 50000,
     getSitemapStream: (i) => {
@@ -131,6 +130,28 @@ async function writeSitemap(urls) {
     indexWrite.on("finish", res);
     indexWrite.on("error", rej);
   });
+}
+
+async function writeSitemap(urls) {
+  // Clean generated shard files first so Google never sees stale sitemap index
+  // references after the site shrinks or returns to a single direct sitemap.
+  for (let i = 0; i < 20; i++) {
+    await rm(resolve(PUBLIC_DIR, `sitemap-${i}.xml`), { force: true });
+  }
+
+  await mkdir(PUBLIC_DIR, { recursive: true });
+
+  if (urls.length > 50000) {
+    await writeSitemapIndex(urls);
+    return;
+  }
+
+  // For this static website, write a plain XML <urlset> directly at
+  // /sitemap.xml. Avoiding a sitemap index removes one extra fetch step and is
+  // the most crawler-compatible setup for Search Console.
+  const smStream = new SitemapStream({ hostname: HOSTNAME });
+  const sitemapXml = await streamToPromise(smStream, urls);
+  await writeFile(resolve(PUBLIC_DIR, "sitemap.xml"), sitemapXml.toString(), "utf8");
 }
 
 async function writeRobots() {
