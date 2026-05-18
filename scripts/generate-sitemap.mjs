@@ -25,6 +25,7 @@ import { SitemapAndIndexStream, SitemapStream, streamToPromise } from "sitemap";
 import { createWriteStream } from "node:fs";
 import { writeFile, mkdir, rm } from "node:fs/promises";
 import { resolve, dirname, relative, sep, posix } from "node:path";
+import { Readable } from "node:stream";
 import { fileURLToPath } from "node:url";
 import fg from "fast-glob";
 
@@ -150,7 +151,7 @@ async function writeSitemap(urls) {
   // /sitemap.xml. Avoiding a sitemap index removes one extra fetch step and is
   // the most crawler-compatible setup for Search Console.
   const smStream = new SitemapStream({ hostname: HOSTNAME });
-  const sitemapXml = await streamToPromise(smStream, urls);
+  const sitemapXml = await streamToPromise(Readable.from(urls).pipe(smStream));
   await writeFile(resolve(PUBLIC_DIR, "sitemap.xml"), sitemapXml.toString(), "utf8");
 }
 
