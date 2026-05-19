@@ -2556,10 +2556,32 @@
     };
     return map[cat] || '/images/recipes/breakfast.jpg';
   }
+  // Build per-category pools of recipes that DO have their own image, so
+  // recipes without a dedicated image still show a real food photo from
+  // the same category instead of a generic placeholder.
+  const _categoryPools = {};
+  function _buildCategoryPools() {
+    if (Object.keys(_categoryPools).length) return;
+    for (const rec of RECIPES) {
+      if (!RECIPE_IMAGE_SLUGS.has(rec.slug)) continue;
+      (_categoryPools[rec.category] = _categoryPools[rec.category] || []).push(rec.slug);
+    }
+  }
+  function _hashSlug(s) {
+    let h = 0;
+    for (let i = 0; i < s.length; i++) h = ((h << 5) - h + s.charCodeAt(i)) | 0;
+    return Math.abs(h);
+  }
   function recipeImage(r) {
-    return RECIPE_IMAGE_SLUGS.has(r.slug)
-      ? '/images/recipes/' + r.slug + '.jpg'
-      : categoryImage(r.category);
+    if (RECIPE_IMAGE_SLUGS.has(r.slug)) {
+      return '/images/recipes/' + r.slug + '.jpg';
+    }
+    _buildCategoryPools();
+    const pool = _categoryPools[r.category];
+    if (pool && pool.length) {
+      return '/images/recipes/' + pool[_hashSlug(r.slug) % pool.length] + '.jpg';
+    }
+    return categoryImage(r.category);
   }
 
   function renderRecipes() {
