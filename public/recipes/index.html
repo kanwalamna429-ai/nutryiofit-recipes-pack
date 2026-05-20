@@ -2562,7 +2562,7 @@
   const _categoryPools = {};
   function _buildCategoryPools() {
     if (Object.keys(_categoryPools).length) return;
-    for (const rec of RECIPES) {
+    for (const rec of allRecipes) {
       if (!RECIPE_IMAGE_SLUGS.has(rec.slug)) continue;
       (_categoryPools[rec.category] = _categoryPools[rec.category] || []).push(rec.slug);
     }
