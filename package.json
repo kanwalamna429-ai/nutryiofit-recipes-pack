@@ -6,9 +6,10 @@
   "scripts": {
     "dev": "vite dev",
     "generate:sitemap": "node scripts/generate-sitemap.mjs",
-    "prebuild": "node scripts/generate-sitemap.mjs",
+    "generate:feed": "node scripts/generate-feed.mjs",
+    "prebuild": "node scripts/generate-sitemap.mjs && node scripts/generate-feed.mjs",
     "build": "vite build",
-    "prebuild:dev": "node scripts/generate-sitemap.mjs",
+    "prebuild:dev": "node scripts/generate-sitemap.mjs && node scripts/generate-feed.mjs",
     "build:dev": "vite build --mode development",
     "preview": "vite preview",
     "lint": "eslint .",
