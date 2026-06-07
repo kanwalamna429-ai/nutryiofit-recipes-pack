@@ -1,80 +1,85 @@
 /* =================================================================
-   Nutryio AdSense Manager  ·  /shared/ads.js
+   Nutryio Ads Manager  ·  /shared/ads.js
    Loaded automatically on every page via template.js.
-   =================================================================
 
-   HOW TO ACTIVATE ADS  (3 steps):
+   Supports three networks running side-by-side:
+     1. Google AdSense      (per-slot <ins> units)
+     2. Adsterra banners    (728x90 + 300x250 iframe units)
+     3. Monetag MultiTag    (single global script – push/popunder/etc.)
 
-   1. Sign up and get approved at https://adsense.google.com
-      This can take a few days — you need your site to be live.
-
-   2. Find your Publisher ID:
-        AdSense → Account → Account information
-        Looks like:  ca-pub-1234567890123456
-
-   3. Create one Display ad unit per slot below:
-        AdSense → Ads → By ad unit → + New ad unit → Display ads
-        Copy the numeric Slot ID shown in the code snippet.
-        (e.g. 9876543210)
-
-   4. Fill in the slot IDs below, then set  enabled: true
-
+   Each network has its own enabled flag. Adsterra renders into the
+   same [data-ad] placeholders as AdSense; if both networks are
+   enabled for a slot, AdSense wins and Adsterra is skipped for
+   that placeholder (so units do not stack).
    ================================================================= */
 
 const NUTRYIO_ADS = {
 
-  /* ── Master switch ─────────────────────────────────────────── */
-  enabled: true,             // AdSense library loads on every page
+  /* ── Google AdSense ────────────────────────────────────────── */
+  adsense: {
+    enabled: true,
+    publisherId: 'ca-pub-1056206763644639',
+    slots: {
+      /* Homepage */
+      'homepage-after-category':     '',
+      /* Blog index sidebar */
+      'blog-index-sidebar-top':      '',
+      'blog-index-sidebar-bottom':   '',
+      /* Single blog post */
+      'post-above-image':            '',
+      'post-in-article':             '',
+      'post-below-article':          '',
+      'post-sidebar-top':            '',
+      'post-sidebar-after-widgets':  '',
+      /* Calculator pages */
+      'calc-after-calculator':       '',
+      'calc-after-content':          '',
+      'calc-sidebar':                '',
+    },
+  },
 
-  /* ── Your publisher ID ─────────────────────────────────────── */
-  publisherId: 'ca-pub-1056206763644639',
-
-  /* ── Ad slot IDs ───────────────────────────────────────────── */
+  /* ── Adsterra banners ──────────────────────────────────────── */
   /*
-   * Each key maps to a data-ad="..." attribute in the HTML.
-   * Create one ad unit per slot in AdSense → Ads → By ad unit.
-   * All units use the responsive "Display" format.
-   *
-   * HOMEPAGE
-   *   homepage-after-category  Responsive banner after each category section
-   *
-   * BLOG INDEX SIDEBAR
-   *   blog-index-sidebar-top      300×250 at the top of the sidebar
-   *   blog-index-sidebar-bottom   300×250 below all sidebar widgets
-   *
-   * SINGLE BLOG POST
-   *   post-above-image            Responsive — above the featured image
-   *   post-in-article             Responsive — mid-article (after first callout)
-   *   post-below-article          Responsive — below the article body
-   *   post-sidebar-top            300×250 — sidebar top
-   *   post-sidebar-after-widgets  300×250 — sidebar after all widgets
-   *
-   * CALCULATOR PAGES
-   *   calc-after-calculator       Responsive — below the calculator card
-   *   calc-after-content          Responsive — after the SEO/FAQ content
-   *   calc-sidebar                300×250 — calculator sidebar
+   * Two banner units are configured: a 728x90 leaderboard for
+   * in-content / full-width slots and a 300x250 medium rectangle
+   * for sidebar slots. Each [data-ad] slot is mapped to one of
+   * these two sizes below.
    */
-  slots: {
+  adsterra: {
+    enabled: true,
+    units: {
+      leaderboard: {
+        key:    '529880126f5050c80092250dcea5e50e',
+        width:  728,
+        height: 90,
+      },
+      rectangle: {
+        key:    '0f6f2d44485c1bc0f4b725a17a63fae6',
+        width:  300,
+        height: 250,
+      },
+    },
+    /* slot-key → unit name */
+    slotUnits: {
+      'homepage-after-category':     'leaderboard',
+      'blog-index-sidebar-top':      'rectangle',
+      'blog-index-sidebar-bottom':   'rectangle',
+      'post-above-image':            'leaderboard',
+      'post-in-article':             'leaderboard',
+      'post-below-article':          'leaderboard',
+      'post-sidebar-top':            'rectangle',
+      'post-sidebar-after-widgets':  'rectangle',
+      'calc-after-calculator':       'leaderboard',
+      'calc-after-content':          'leaderboard',
+      'calc-sidebar':                'rectangle',
+    },
+  },
 
-    /* Homepage */
-    'homepage-after-category':     '',
-
-    /* Blog index sidebar */
-    'blog-index-sidebar-top':      '',
-    'blog-index-sidebar-bottom':   '',
-
-    /* Single blog post */
-    'post-above-image':            '',
-    'post-in-article':             '',
-    'post-below-article':          '',
-    'post-sidebar-top':            '',
-    'post-sidebar-after-widgets':  '',
-
-    /* Calculator pages */
-    'calc-after-calculator':       '',
-    'calc-after-content':          '',
-    'calc-sidebar':                '',
-
+  /* ── Monetag MultiTag (push / popunder / etc.) ─────────────── */
+  monetag: {
+    enabled: true,
+    src:     'https://quge5.com/88/tag.min.js',
+    zone:    '246800',
   },
 
 };
@@ -83,36 +88,101 @@ const NUTRYIO_ADS = {
    Internal — ad injection logic.  Do not edit below this line.
    ================================================================ */
 
+function _nutryioLoadAdsense() {
+  const cfg = NUTRYIO_ADS.adsense;
+  if (!cfg.enabled || !cfg.publisherId) return;
+  if (document.querySelector('script[data-nutryio-adsense]')) return;
+  const s = document.createElement('script');
+  s.async       = true;
+  s.src         = `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${cfg.publisherId}`;
+  s.crossOrigin = 'anonymous';
+  s.dataset.nutryioAdsense = '1';
+  document.head.appendChild(s);
+}
+
+function _nutryioLoadMonetag() {
+  const cfg = NUTRYIO_ADS.monetag;
+  if (!cfg.enabled || !cfg.src) return;
+  if (document.querySelector('script[data-nutryio-monetag]')) return;
+  const s = document.createElement('script');
+  s.src   = cfg.src;
+  s.async = true;
+  s.setAttribute('data-cfasync', 'false');
+  if (cfg.zone) s.setAttribute('data-zone', cfg.zone);
+  s.dataset.nutryioMonetag = '1';
+  document.head.appendChild(s);
+}
+
+function _nutryioRenderAdsense(el, slotKey) {
+  const cfg = NUTRYIO_ADS.adsense;
+  if (!cfg.enabled || !cfg.publisherId) return false;
+  const slotId = cfg.slots[slotKey];
+  if (!slotId) return false;
+  el.innerHTML = `<ins class="adsbygoogle"
+    style="display:block"
+    data-ad-client="${cfg.publisherId}"
+    data-ad-slot="${slotId}"
+    data-ad-format="auto"
+    data-full-width-responsive="true"></ins>`;
+  try { (window.adsbygoogle = window.adsbygoogle || []).push({}); } catch (_) {}
+  return true;
+}
+
+function _nutryioRenderAdsterra(el, slotKey) {
+  const cfg = NUTRYIO_ADS.adsterra;
+  if (!cfg.enabled) return false;
+  const unitName = cfg.slotUnits[slotKey];
+  if (!unitName) return false;
+  const unit = cfg.units[unitName];
+  if (!unit || !unit.key) return false;
+
+  /* Adsterra's invoke.js uses document.write, which only works
+     inline at parse time. To inject after page load we host the
+     script inside an isolated iframe via srcdoc.                 */
+  const html = `<!doctype html><html><head><meta charset="utf-8">
+    <style>html,body{margin:0;padding:0;background:transparent;overflow:hidden}</style>
+    </head><body>
+    <script type="text/javascript">
+      atOptions = {
+        'key'    : '${unit.key}',
+        'format' : 'iframe',
+        'height' : ${unit.height},
+        'width'  : ${unit.width},
+        'params' : {}
+      };
+    <\/script>
+    <script type="text/javascript" src="https://www.highperformanceformat.com/${unit.key}/invoke.js"><\/script>
+    </body></html>`;
+
+  el.innerHTML = `<iframe
+    title="Advertisement"
+    scrolling="no"
+    frameborder="0"
+    style="display:block;margin:0 auto;border:0;width:${unit.width}px;height:${unit.height}px;max-width:100%"
+    srcdoc='${html.replace(/'/g, "&#39;")}'></iframe>`;
+  return true;
+}
+
 function _nutryioActivateAds() {
-  if (!NUTRYIO_ADS.enabled) return; // placeholders stay as-is when disabled
+  /* Always load Monetag — it is a sitewide tag, not tied to slots. */
+  _nutryioLoadMonetag();
 
-  /* Inject the AdSense library once */
-  if (!document.querySelector('script[data-nutryio-adsense]')) {
-    const s = document.createElement('script');
-    s.async        = true;
-    s.src          = `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${NUTRYIO_ADS.publisherId}`;
-    s.crossOrigin  = 'anonymous';
-    s.dataset.nutryioAdsense = '1';
-    document.head.appendChild(s);
-  }
+  const hasAdsense  = NUTRYIO_ADS.adsense.enabled  && !!NUTRYIO_ADS.adsense.publisherId;
+  const hasAdsterra = NUTRYIO_ADS.adsterra.enabled;
 
-  /* Replace every placeholder with a live AdSense <ins> unit */
+  if (hasAdsense)  _nutryioLoadAdsense();
+  if (!hasAdsense && !hasAdsterra) return; // nothing to render into slots
+
   document.querySelectorAll('[data-ad]').forEach(el => {
     const slotKey = el.dataset.ad;
-    const slotId  = NUTRYIO_ADS.slots[slotKey];
-    if (!slotId) return; // skip slots with no ID configured yet
 
-    /* Mark element so CSS strips the dashed-border placeholder style */
-    el.dataset.adLive = '1';
+    /* Prefer AdSense when a slot ID is configured; otherwise fall
+       back to Adsterra so the placeholder is still monetised.    */
+    let filled = false;
+    if (hasAdsense)  filled = _nutryioRenderAdsense(el, slotKey);
+    if (!filled && hasAdsterra) filled = _nutryioRenderAdsterra(el, slotKey);
 
-    el.innerHTML = `<ins class="adsbygoogle"
-      style="display:block"
-      data-ad-client="${NUTRYIO_ADS.publisherId}"
-      data-ad-slot="${slotId}"
-      data-ad-format="auto"
-      data-full-width-responsive="true"></ins>`;
-
-    try { (window.adsbygoogle = window.adsbygoogle || []).push({}); } catch (_) {}
+    if (filled) el.dataset.adLive = '1';
   });
 }
 
