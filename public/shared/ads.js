@@ -35,6 +35,15 @@ const NUTRYIO_ADS = {
       'calc-after-calculator':       '',
       'calc-after-content':          '',
       'calc-sidebar':                '',
+      /* Recipes index */
+      'recipe-index-top':            '',
+      'recipe-index-sidebar-top':    '',
+      'recipe-index-sidebar-bottom': '',
+      /* Single recipe page */
+      'recipe-above-card':           '',
+      'recipe-below-card':           '',
+      'recipe-sidebar-top':          '',
+      'recipe-sidebar-bottom':       '',
     },
   },
 
@@ -72,6 +81,15 @@ const NUTRYIO_ADS = {
       'calc-after-calculator':       'leaderboard',
       'calc-after-content':          'leaderboard',
       'calc-sidebar':                'rectangle',
+      /* Recipes index */
+      'recipe-index-top':            'leaderboard',
+      'recipe-index-sidebar-top':    'rectangle',
+      'recipe-index-sidebar-bottom': 'rectangle',
+      /* Single recipe page */
+      'recipe-above-card':           'leaderboard',
+      'recipe-below-card':           'leaderboard',
+      'recipe-sidebar-top':          'rectangle',
+      'recipe-sidebar-bottom':       'rectangle',
     },
   },
 
