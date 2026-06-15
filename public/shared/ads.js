@@ -233,7 +233,7 @@ function _nutryioInjectRecipeLink() {
   list.parentNode.insertBefore(a, list.nextSibling);
 }
 
-/* Insert 2 inline anchor-text links between blog body paragraphs. */
+/* Insert 4 inline anchor-text links between blog body paragraphs. */
 function _nutryioInjectBlogLinks() {
   const body = document.querySelector('.post-body');
   if (!body) return;
@@ -243,30 +243,29 @@ function _nutryioInjectBlogLinks() {
   body.dataset.nutryioLinks = '1';
 
   const pool = NUTRYIO_ADS.blogAnchors.slice();
-  /* pick 2 distinct anchors based on tick */
-  const a1 = pool[_TICK % pool.length];
-  const a2 = pool[(_TICK + 3) % pool.length] === a1
-    ? pool[(_TICK + 4) % pool.length] : pool[(_TICK + 3) % pool.length];
+  const pickAnchor = (off) => pool[(_TICK + off) % pool.length];
+  const anchors = [pickAnchor(0), pickAnchor(2), pickAnchor(4), pickAnchor(6)];
 
-  const url1 = _pickSmartlink(0);
-  const url2 = _pickSmartlink(1);
-
-  /* Place link 1 after paragraph 2, link 2 two-thirds in */
-  const i1 = Math.min(2, paragraphs.length - 1);
-  const i2 = Math.max(i1 + 2, Math.floor(paragraphs.length * 0.66));
-  const targets = [
-    { idx: i1, anchor: a1, url: url1 },
-    { idx: Math.min(i2, paragraphs.length - 1), anchor: a2, url: url2 },
+  const n = paragraphs.length;
+  const rawPositions = [
+    Math.min(2, n - 1),
+    Math.max(3, Math.floor(n * 0.30)),
+    Math.max(5, Math.floor(n * 0.55)),
+    Math.max(7, Math.floor(n * 0.80)),
   ];
-
-  targets.forEach(t => {
-    const p = paragraphs[t.idx];
+  const used = new Set();
+  rawPositions.forEach((pos, k) => {
+    let idx = Math.min(pos, n - 1);
+    while (used.has(idx) && idx < n - 1) idx++;
+    used.add(idx);
+    const p = paragraphs[idx];
     if (!p || p.dataset.nutryioLinked) return;
     p.dataset.nutryioLinked = '1';
+    const url = _pickSmartlink(k);
     const callout = document.createElement('p');
     callout.style.cssText = 'margin:1.25rem 0;padding:.75rem 1rem;border-left:3px solid var(--primary,#16a34a);background:rgba(22,163,74,.06);font-size:.95rem;border-radius:6px;';
-    callout.innerHTML = `Related: <a ${_smartlinkAttrs(t.url)}
-      style="color:var(--primary,#16a34a);font-weight:600;text-decoration:underline;">${t.anchor}</a> →`;
+    callout.innerHTML = `Related: <a ${_smartlinkAttrs(url)}
+      style="color:var(--primary,#16a34a);font-weight:600;text-decoration:underline;">${anchors[k]}</a> →`;
     p.parentNode.insertBefore(callout, p.nextSibling);
   });
 }
