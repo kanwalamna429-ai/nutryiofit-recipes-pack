@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
+
 Sitemap: https://nutryio.fit/sitemap.xml
-Sitemap: https://nutryio.fit/sitemap_index.xml

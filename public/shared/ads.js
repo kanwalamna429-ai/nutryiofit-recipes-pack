@@ -43,13 +43,13 @@ const NUTRYIO_ADS = {
   advertica: {
     enabled: true,
     units: {
-      /* "0x0" flex / responsive unit — fills available width */
+      /* 728x90 horizontal leaderboard */
       leaderboard: {
-        className:  'a8489a508b1',
+        className:  'b36b1198822',
         domain:     '//data527.click',
-        affquery:   '/203167e6f99f4f2cc149/8489a508b1/?placementName=default',
-        width:  0,
-        height: 0,
+        affquery:   '/54c73f944984d4d8f2b7/36b1198822/?placementName=default',
+        width:  728,
+        height: 90,
       },
       /* 300x250 medium rectangle */
       rectangle: {
