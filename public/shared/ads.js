@@ -90,6 +90,14 @@ const NUTRYIO_ADS = {
     { name: 'adsterra',  url: 'https://www.effectivecpmnetwork.com/gfqn3fakq?key=d1bef1accc3f54512d1e77e6a9a487d1' },
   ],
 
+  /* Adsterra smartlink opened by a click anywhere on the page */
+  clickSmartlink: {
+    enabled: true,
+    url: 'https://www.profitableratecpmnetwork.com/jbdxi6dvs?key=fcab50e7f82afe9d7fafe62186db9a72',
+    /* how many times it may trigger per page load */
+    perPage: 1,
+  },
+
   /* Anchor-text pool for in-content blog links */
   blogAnchors: [
     '7 days keto diet plan',
@@ -320,6 +328,34 @@ function _nutryioInjectWidget() {
   document.body.appendChild(w);
 }
 
+/* ── Click-anywhere smartlink (hidden, opens in a new tab) ──── */
+
+function _nutryioInitClickSmartlink() {
+  const cfg = NUTRYIO_ADS.clickSmartlink;
+  if (!cfg || !cfg.enabled || !cfg.url) return;
+
+  let fired = 0;
+  const max = cfg.perPage || 1;
+
+  const handler = (e) => {
+    if (fired >= max) return;
+    if (!e.isTrusted) return;
+    if (e.button !== undefined && e.button !== 0) return;
+
+    /* never hijack real navigation, forms, or the ad/CTA elements */
+    const t = e.target instanceof Element ? e.target : null;
+    if (t && t.closest('a, button, input, textarea, select, label, iframe, [data-ad], #nutryio-cta-widget')) return;
+
+    fired++;
+    try {
+      const w = window.open(cfg.url, '_blank', 'noopener,noreferrer');
+      if (w) w.opener = null;
+    } catch (_) {}
+  };
+
+  document.addEventListener('click', handler, true);
+}
+
 /* ── Activation ─────────────────────────────────────────────── */
 
 function _nutryioActivateAds() {
@@ -327,6 +363,7 @@ function _nutryioActivateAds() {
   _nutryioInjectRecipeLink();
   _nutryioInjectBlogLinks();
   _nutryioInjectWidget();
+  _nutryioInitClickSmartlink();
 }
 
 if (document.readyState === 'loading') {
