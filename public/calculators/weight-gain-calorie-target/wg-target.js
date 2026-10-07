@@ -113,15 +113,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let assessment, assessColor, assessBg;
     if (kgToGain <= maxMuscleTotal) {
-      assessment = '⚡ Realistic — mostly muscle gain is possible';
+      assessment = ' Realistic — mostly muscle gain is possible';
       assessColor = '#15803d';
       assessBg = '#f0fdf4';
     } else if (kgToGain <= maxMuscleTotal * 2) {
-      assessment = '⚡ Moderate — expect a mix of muscle and fat gain';
+      assessment = ' Moderate — expect a mix of muscle and fat gain';
       assessColor = '#c2410c';
       assessBg = '#fff7ed';
     } else {
-      assessment = '⚡ Aggressive — most of the weight gained will be fat';
+      assessment = ' Aggressive — most of the weight gained will be fat';
       assessColor = '#b91c1c';
       assessBg = '#fef2f2';
     }

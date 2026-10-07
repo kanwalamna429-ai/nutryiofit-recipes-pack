@@ -25,13 +25,13 @@ document.addEventListener('DOMContentLoaded', () => {
     if (used.length === 0 && perSide === 0) {
       el.innerHTML = 'No plates needed — just the bar.';
     } else {
-      el.innerHTML = '<strong>Plates per side:</strong><br>' + used.map(u => u.count+'× '+u.p+'kg').join(' + ') + (remaining > 0.01 ? '<br><span style="color:#ef4444">⚠️ '+remaining.toFixed(2)+'kg cannot be loaded exactly</span>' : '<br><span style="color:#22c55e">✓ Exact match</span>');
+      el.innerHTML = '<strong>Plates per side:</strong><br>' + used.map(u => u.count+'× '+u.p+'kg').join(' + ') + (remaining > 0.01 ? '<br><span style="color:#ef4444"> '+remaining.toFixed(2)+'kg cannot be loaded exactly</span>' : '<br><span style="color:#22c55e">✓ Exact match</span>');
     }
     ok();
   }
   function err(msg) {
     const w = document.getElementById('calc-warning');
-    w.textContent = '⚠️ ' + msg;
+    w.textContent = ' ' + msg;
     w.classList.add('visible');
     document.getElementById('result-section').classList.remove('visible');
   }

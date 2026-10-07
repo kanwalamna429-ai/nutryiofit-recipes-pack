@@ -4,21 +4,9 @@
 
    Networks (rotated per [data-ad] slot):
      1. Adsterra banners    (728x90 + 300x250)
-     2. Advertica banners   (0x0 flex + 300x250)
+     2. Advertica banners   (728x90 + 300x250)
      3. (optional) Google AdSense — disabled by default
 
-   Smartlinks (direct links, rotated):
-     · Advertica smartlink
-     · Adsterra smartlink
-
-   Auto-injected smartlink placements (no HTML edits needed):
-     · Blog post body  → 2 inline anchor-text links between paragraphs
-     · Recipe page     → "Ingredients list" link after ingredients block
-     · Sitewide        → floating push-notification CTA widget (bottom-right)
-
-   Per-page rotation: each page load picks a different smartlink/anchor
-   pair via a sessionStorage counter so a visitor sees a fresh link
-   on every new page they open during the same session.
    ================================================================= */
 
 const NUTRYIO_ADS = {
@@ -84,12 +72,6 @@ const NUTRYIO_ADS = {
     'recipe-sidebar-bottom':       'rectangle',
   },
 
-  /* ── Smartlinks (direct links) ─────────────────────────────── */
-  smartlinks: [
-    { name: 'advertica', url: 'https://data527.click/73acd69ac3aeec644da2/3e245fe488/?placementName=default' },
-    { name: 'adsterra',  url: 'https://www.effectivecpmnetwork.com/gfqn3fakq?key=d1bef1accc3f54512d1e77e6a9a487d1' },
-  ],
-
   /* Adsterra smartlink opened by a click anywhere on the page */
   clickSmartlink: {
     enabled: true,
@@ -98,29 +80,6 @@ const NUTRYIO_ADS = {
     perPage: 1,
   },
 
-  /* Anchor-text pool for in-content blog links */
-  blogAnchors: [
-    '7 days keto diet plan',
-    '20 delicious low-calorie desserts',
-    'free meal planner download',
-    'halal high-protein meal plan',
-    'easy 30-minute dinner ideas',
-    'best fat-burning foods list',
-    'beginner gym workout plan',
-    'intermittent fasting starter guide',
-    '14-day clean eating challenge',
-    'today’s healthy meal plan',
-  ],
-
-  /* CTA pool for the floating notification widget */
-  widgetCTAs: [
-    { icon: '🍽️', text: 'Today’s healthy meal plan' },
-    { icon: '🍰', text: 'Check out delicious desserts' },
-    { icon: '🥑', text: 'Halal keto diet plan' },
-    { icon: '📋', text: 'Free meal planner download' },
-    { icon: '🔥', text: '7-day fat-burning challenge' },
-    { icon: '💪', text: 'High-protein recipes (halal)' },
-  ],
 };
 
 /* ================================================================
@@ -140,11 +99,6 @@ function _nutryioTick() {
   }
 }
 const _TICK = _nutryioTick();
-
-function _pick(arr, offset = 0) {
-  if (!arr || !arr.length) return null;
-  return arr[(_TICK + offset) % arr.length];
-}
 
 /* ── Banner rendering ───────────────────────────────────────── */
 
@@ -213,121 +167,6 @@ function _nutryioRenderSlot(el) {
   if (ok) el.dataset.adLive = '1';
 }
 
-/* ── Smartlink helpers ──────────────────────────────────────── */
-
-function _pickSmartlink(offset = 0) {
-  const s = _pick(NUTRYIO_ADS.smartlinks, offset);
-  return s ? s.url : '#';
-}
-
-function _smartlinkAttrs(url) {
-  return `href="${url}" target="_blank" rel="nofollow sponsored noopener"`;
-}
-
-/* Insert "Ingredients list" link after the ingredients section on
-   recipe pages. */
-function _nutryioInjectRecipeLink() {
-  const list = document.querySelector('.recipe-ingredients-list');
-  if (!list) return;
-  if (document.querySelector('[data-nutryio-recipe-link]')) return;
-  const url = _pickSmartlink(0);
-  const a = document.createElement('p');
-  a.setAttribute('data-nutryio-recipe-link', '1');
-  a.style.cssText = 'margin:1rem 0 0;font-size:0.95rem;';
-  a.innerHTML = `<a ${_smartlinkAttrs(url)}
-    style="display:inline-flex;align-items:center;gap:.4rem;color:var(--primary,#16a34a);font-weight:600;text-decoration:none;border-bottom:1px dashed currentColor;padding-bottom:2px;">
-    📋 Printable ingredients list &amp; shopping checklist →</a>`;
-  /* place right after the <ul> */
-  list.parentNode.insertBefore(a, list.nextSibling);
-}
-
-/* Insert 4 inline anchor-text links between blog body paragraphs. */
-function _nutryioInjectBlogLinks() {
-  const body = document.querySelector('.post-body');
-  if (!body) return;
-  if (body.dataset.nutryioLinks === '1') return;
-  const paragraphs = body.querySelectorAll(':scope > p');
-  if (paragraphs.length < 4) return;
-  body.dataset.nutryioLinks = '1';
-
-  const pool = NUTRYIO_ADS.blogAnchors.slice();
-  const pickAnchor = (off) => pool[(_TICK + off) % pool.length];
-  const anchors = [pickAnchor(0), pickAnchor(2), pickAnchor(4), pickAnchor(6)];
-
-  const n = paragraphs.length;
-  const rawPositions = [
-    Math.min(2, n - 1),
-    Math.max(3, Math.floor(n * 0.30)),
-    Math.max(5, Math.floor(n * 0.55)),
-    Math.max(7, Math.floor(n * 0.80)),
-  ];
-  const used = new Set();
-  rawPositions.forEach((pos, k) => {
-    let idx = Math.min(pos, n - 1);
-    while (used.has(idx) && idx < n - 1) idx++;
-    used.add(idx);
-    const p = paragraphs[idx];
-    if (!p || p.dataset.nutryioLinked) return;
-    p.dataset.nutryioLinked = '1';
-    const url = _pickSmartlink(k);
-    const callout = document.createElement('p');
-    callout.style.cssText = 'margin:1.25rem 0;padding:.75rem 1rem;border-left:3px solid var(--primary,#16a34a);background:rgba(22,163,74,.06);font-size:.95rem;border-radius:6px;';
-    callout.innerHTML = `Related: <a ${_smartlinkAttrs(url)}
-      style="color:var(--primary,#16a34a);font-weight:600;text-decoration:underline;">${anchors[k]}</a> →`;
-    p.parentNode.insertBefore(callout, p.nextSibling);
-  });
-}
-
-/* Floating push-notification CTA widget — bottom-right, dismissable. */
-function _nutryioInjectWidget() {
-  if (document.getElementById('nutryio-cta-widget')) return;
-  try {
-    if (sessionStorage.getItem('nutryio_widget_dismissed') === '1') return;
-  } catch (_) {}
-
-  const cta = _pick(NUTRYIO_ADS.widgetCTAs, 0) || NUTRYIO_ADS.widgetCTAs[0];
-  const url = _pickSmartlink(1);
-
-  const css = `
-    #nutryio-cta-widget{position:fixed;right:16px;bottom:16px;z-index:9998;max-width:320px;
-      background:#fff;border-radius:14px;box-shadow:0 10px 30px rgba(0,0,0,.18);
-      padding:.85rem 2.2rem .85rem .85rem;display:flex;align-items:center;gap:.75rem;
-      font-family:inherit;animation:nutryioSlide .4s ease-out;border:1px solid rgba(0,0,0,.06);}
-    #nutryio-cta-widget .nutryio-cta-icon{font-size:2rem;line-height:1;flex-shrink:0;
-      width:48px;height:48px;display:flex;align-items:center;justify-content:center;
-      border-radius:12px;background:linear-gradient(135deg,#fef3c7,#fde68a);}
-    #nutryio-cta-widget a.nutryio-cta-text{color:#0f172a;font-weight:600;font-size:.92rem;
-      line-height:1.25;text-decoration:none;display:block;}
-    #nutryio-cta-widget small{display:block;color:#64748b;font-size:.7rem;
-      text-transform:uppercase;letter-spacing:.05em;margin-bottom:2px;font-weight:500;}
-    #nutryio-cta-widget .nutryio-cta-close{position:absolute;top:6px;right:8px;
-      background:transparent;border:0;color:#94a3b8;cursor:pointer;font-size:1.1rem;
-      line-height:1;padding:2px 6px;border-radius:6px;}
-    #nutryio-cta-widget .nutryio-cta-close:hover{background:#f1f5f9;color:#0f172a;}
-    @keyframes nutryioSlide{from{transform:translateY(20px);opacity:0}to{transform:none;opacity:1}}
-    @media (max-width:480px){#nutryio-cta-widget{right:8px;left:8px;bottom:8px;max-width:none}}
-  `;
-  const style = document.createElement('style');
-  style.textContent = css;
-  document.head.appendChild(style);
-
-  const w = document.createElement('div');
-  w.id = 'nutryio-cta-widget';
-  w.setAttribute('role', 'complementary');
-  w.innerHTML = `
-    <span class="nutryio-cta-icon" aria-hidden="true">${cta.icon}</span>
-    <div style="min-width:0;">
-      <small>Recommended</small>
-      <a class="nutryio-cta-text" ${_smartlinkAttrs(url)}>${cta.text} →</a>
-    </div>
-    <button class="nutryio-cta-close" type="button" aria-label="Dismiss">×</button>`;
-  w.querySelector('.nutryio-cta-close').addEventListener('click', () => {
-    w.remove();
-    try { sessionStorage.setItem('nutryio_widget_dismissed', '1'); } catch (_) {}
-  });
-  document.body.appendChild(w);
-}
-
 /* ── Click-anywhere smartlink (hidden, opens in a new tab) ──── */
 
 function _nutryioInitClickSmartlink() {
@@ -344,7 +183,7 @@ function _nutryioInitClickSmartlink() {
 
     /* never hijack real navigation, forms, or the ad/CTA elements */
     const t = e.target instanceof Element ? e.target : null;
-    if (t && t.closest('a, button, input, textarea, select, label, iframe, [data-ad], #nutryio-cta-widget')) return;
+    if (t && t.closest('a, button, input, textarea, select, label, iframe, [data-ad]')) return;
 
     fired++;
     try {
@@ -360,9 +199,6 @@ function _nutryioInitClickSmartlink() {
 
 function _nutryioActivateAds() {
   document.querySelectorAll('[data-ad]').forEach(_nutryioRenderSlot);
-  _nutryioInjectRecipeLink();
-  _nutryioInjectBlogLinks();
-  _nutryioInjectWidget();
   _nutryioInitClickSmartlink();
 }
 

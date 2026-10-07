@@ -147,7 +147,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function showError(msg) {
     const w = document.getElementById('calc-warning');
     if (w) {
-      w.textContent = '⚠️ ' + msg;
+      w.textContent = ' ' + msg;
       w.classList.add('visible');
     }
     document.getElementById('result-section').classList.remove('visible');

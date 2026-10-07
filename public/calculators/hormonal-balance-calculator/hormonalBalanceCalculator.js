@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
     ];
     patterns.sort((a,b)=>b.score-a.score);
     const el = document.getElementById('res-hormonal-info');
-    el.innerHTML = '<p style="font-size:0.75rem;color:#64748b;margin-bottom:0.75rem">⚠️ This tool identifies PATTERNS only — not diagnoses. Please consult your healthcare provider for testing and diagnosis.</p>';
+    el.innerHTML = '<p style="font-size:0.75rem;color:#64748b;margin-bottom:0.75rem"> This tool identifies PATTERNS only — not diagnoses. Please consult your healthcare provider for testing and diagnosis.</p>';
     el.innerHTML += '<div style="display:grid;gap:0.5rem">' + patterns.slice(0,3).map((p,i) => {
       const color = i === 0 ? '#22c55e' : i === 1 ? '#f97316' : '#64748b';
       return `<div style="padding:0.75rem;border-radius:0.75rem;border:1px solid #e2e8f0"><div style="display:flex;justify-content:space-between"><span style="font-weight:600;font-size:0.875rem">${p.name}</span><span style="font-weight:700;color:${color}">${p.score}%</span></div><div style="font-size:0.75rem;color:#64748b;margin-top:0.25rem">${p.symptoms}</div></div>`;
@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   function err(msg) {
     const w = document.getElementById('calc-warning');
-    w.textContent = '⚠️ ' + msg;
+    w.textContent = ' ' + msg;
     w.classList.add('visible');
     document.getElementById('result-section').classList.remove('visible');
   }

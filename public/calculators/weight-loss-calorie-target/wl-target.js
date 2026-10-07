@@ -140,7 +140,7 @@ document.addEventListener('DOMContentLoaded', () => {
     fb.style.borderColor = zoneColor;
     
     const ft = document.getElementById('feasibility-title');
-    ft.textContent = `⚡ ${zone} Rate`;
+    ft.textContent = ` ${zone} Rate`;
     ft.style.color = zoneColor;
 
     document.getElementById('pct-val').textContent = pctBwPerWeek.toFixed(2);

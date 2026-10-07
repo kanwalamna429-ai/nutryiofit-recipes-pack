@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if(nuts==='yes')suspects.push({food:'Nuts / Tree nuts',likelihood:'High',action:'Note which specific nuts trigger symptoms — reactions vary'});
     const el=document.getElementById('res-sensitivity-info');
     const timingNote=timing<=2?'Rapid onset (within 2h) suggests IgE-mediated allergy or strong sensitivity.':timing<=24?'Delayed reaction suggests food intolerance rather than allergy.':'Very delayed reaction (24-48h) is common in non-celiac gluten sensitivity and FODMAPs.';
-    el.innerHTML='<p style="font-size:0.8rem;color:#64748b;margin-bottom:0.75rem">⚠️ Educational tool only. Always consult a healthcare provider for proper allergy testing and diagnosis. Never self-diagnose a food allergy.</p>';
+    el.innerHTML='<p style="font-size:0.8rem;color:#64748b;margin-bottom:0.75rem"> Educational tool only. Always consult a healthcare provider for proper allergy testing and diagnosis. Never self-diagnose a food allergy.</p>';
     el.innerHTML+='<div class="info-card" style="margin-bottom:0.75rem"><h3>Symptom Timing</h3><p>'+timingNote+'</p></div>';
     if(suspects.length>0){
       el.innerHTML+=suspects.map(s=>'<div style="padding:0.75rem;border-radius:0.75rem;border:1px solid #e2e8f0;margin-bottom:0.5rem"><div style="display:flex;justify-content:space-between"><span style="font-weight:600">'+s.food+'</span><span style="color:'+(s.likelihood==='High'?'#ef4444':'#f97316')+';font-weight:600">'+s.likelihood+' likelihood</span></div><div style="font-size:0.8rem;color:#64748b;margin-top:0.25rem">Next step: '+s.action+'</div></div>').join('');
@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   function err(msg) {
     const w = document.getElementById('calc-warning');
-    w.textContent = '⚠️ ' + msg;
+    w.textContent = ' ' + msg;
     w.classList.add('visible');
     document.getElementById('result-section').classList.remove('visible');
   }

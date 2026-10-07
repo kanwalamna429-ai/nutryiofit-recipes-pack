@@ -23,12 +23,12 @@ document.addEventListener('DOMContentLoaded', () => {
       {label:'Estimated Ovulation', value:dayLabel(ovulationIn), desc:'Peak fertility'},
       {label:'Fertile Window', value:dayLabel(fertileWindowStart)+' to '+dayLabel(fertileWindowEnd), desc:'Best chance of conception'},
     ];
-    el.innerHTML = '<div style="display:grid;gap:0.5rem">' + items.map(i => `<div style="padding:0.75rem;border-radius:0.75rem;border:1px solid #e2e8f0;display:flex;justify-content:space-between;align-items:center"><div><div style="font-size:0.75rem;font-weight:600;color:#64748b">${i.label}</div><div style="font-size:0.75rem;color:#94a3b8">${i.desc}</div></div><strong style="text-align:right;font-size:0.875rem">${i.value}</strong></div>`).join('') + '</div><div class="info-card" style="margin-top:1rem"><p style="font-size:0.8rem;color:#64748b">⚠️ These are estimates based on average cycles. Individual cycles vary. For family planning purposes, consult a healthcare provider.</p></div>';
+    el.innerHTML = '<div style="display:grid;gap:0.5rem">' + items.map(i => `<div style="padding:0.75rem;border-radius:0.75rem;border:1px solid #e2e8f0;display:flex;justify-content:space-between;align-items:center"><div><div style="font-size:0.75rem;font-weight:600;color:#64748b">${i.label}</div><div style="font-size:0.75rem;color:#94a3b8">${i.desc}</div></div><strong style="text-align:right;font-size:0.875rem">${i.value}</strong></div>`).join('') + '</div><div class="info-card" style="margin-top:1rem"><p style="font-size:0.8rem;color:#64748b"> These are estimates based on average cycles. Individual cycles vary. For family planning purposes, consult a healthcare provider.</p></div>';
     ok();
   }
   function err(msg) {
     const w = document.getElementById('calc-warning');
-    w.textContent = '⚠️ ' + msg;
+    w.textContent = ' ' + msg;
     w.classList.add('visible');
     document.getElementById('result-section').classList.remove('visible');
   }

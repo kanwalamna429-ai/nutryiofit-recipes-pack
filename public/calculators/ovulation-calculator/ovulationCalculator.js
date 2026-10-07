@@ -19,12 +19,12 @@ document.addEventListener('DOMContentLoaded', () => {
       {label:'Best Conception Days', value:dayLabel(ovulationIn-2)+' to '+dayLabel(ovulationIn), desc:'Sperm survives 3–5 days', color:'#f97316'},
     ];
     const el = document.getElementById('res-ovulation-info');
-    el.innerHTML = '<div style="display:grid;gap:0.5rem">' + items.map(i => `<div style="padding:1rem;border-radius:0.75rem;border:2px solid ${i.color+'33'};background:${i.color+'08'}"><div style="font-size:0.75rem;font-weight:600;color:${i.color};text-transform:uppercase;margin-bottom:0.25rem">${i.label}</div><div style="font-size:1rem;font-weight:700">${i.value}</div><div style="font-size:0.75rem;color:#64748b">${i.desc}</div></div>`).join('') + '</div><div class="info-card" style="margin-top:1rem"><p style="font-size:0.8rem;color:#64748b">ℹ️ Ovulation timing varies. Track BBT (basal body temperature), cervical mucus changes, and use LH predictor strips for more accurate results.</p></div>';
+    el.innerHTML = '<div style="display:grid;gap:0.5rem">' + items.map(i => `<div style="padding:1rem;border-radius:0.75rem;border:2px solid ${i.color+'33'};background:${i.color+'08'}"><div style="font-size:0.75rem;font-weight:600;color:${i.color};text-transform:uppercase;margin-bottom:0.25rem">${i.label}</div><div style="font-size:1rem;font-weight:700">${i.value}</div><div style="font-size:0.75rem;color:#64748b">${i.desc}</div></div>`).join('') + '</div><div class="info-card" style="margin-top:1rem"><p style="font-size:0.8rem;color:#64748b"> Ovulation timing varies. Track BBT (basal body temperature), cervical mucus changes, and use LH predictor strips for more accurate results.</p></div>';
     ok();
   }
   function err(msg) {
     const w = document.getElementById('calc-warning');
-    w.textContent = '⚠️ ' + msg;
+    w.textContent = ' ' + msg;
     w.classList.add('visible');
     document.getElementById('result-section').classList.remove('visible');
   }
