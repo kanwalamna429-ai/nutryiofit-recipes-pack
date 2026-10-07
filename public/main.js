@@ -540,5 +540,6 @@ function setupInteractions() {
 document.addEventListener('DOMContentLoaded', () => {
   renderRecentlyViewed();
   renderPage();
-  document.getElementById('year').textContent = new Date().getFullYear();
+  const year = document.getElementById('year');
+  if (year) year.textContent = new Date().getFullYear();
 });
