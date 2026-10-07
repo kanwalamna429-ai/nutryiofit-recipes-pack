@@ -149,10 +149,10 @@ document.addEventListener('DOMContentLoaded', () => {
       const u = unit === 'metric' ? 'kg' : 'lbs';
       const r = unit === 'metric' ? actualLossRateKg : actualLossRateLbs;
       
-      warningMsg = `⚠️ Your selected rate requires eating below the safe minimum of ${floor} cal/day. Target adjusted to ${floor} cal/day, which supports approximately ${r.toFixed(2)} ${u}/week loss.`;
+      warningMsg = ` Your selected rate requires eating below the safe minimum of ${floor} cal/day. Target adjusted to ${floor} cal/day, which supports approximately ${r.toFixed(2)} ${u}/week loss.`;
       target = floor;
     } else if (dailyDeficit > 1000) {
-      warningMsg = "⚠️ A deficit over 1,000 cal/day is generally considered unsafe and may cause muscle loss and nutrient deficiencies.";
+      warningMsg = " A deficit over 1,000 cal/day is generally considered unsafe and may cause muscle loss and nutrient deficiencies.";
     }
 
     if (warningMsg) {

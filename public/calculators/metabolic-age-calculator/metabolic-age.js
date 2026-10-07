@@ -163,7 +163,7 @@ document.addEventListener('DOMContentLoaded', () => {
         d.style.display = 'flex';
         d.style.alignItems = 'flex-start';
         d.style.gap = '0.5rem';
-        const icon = f.pos ? '🟢' : '🔴';
+        const icon = f.pos ? '' : '';
         d.innerHTML = `<span>${icon}</span><span style="color:#334155">${f.text}</span>`;
         factorsDiv.appendChild(d);
       });

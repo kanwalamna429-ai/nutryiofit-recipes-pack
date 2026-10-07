@@ -1,19 +1,19 @@
 // Categories Data
 const categories = [
-  { id: "body-metrics", name: "Body Metrics", icon: "🧍" },
-  { id: "calories-energy", name: "Calories & Energy", icon: "🔥" },
-  { id: "nutrition-macros", name: "Nutrition & Macros", icon: "🥩" },
-  { id: "hydration", name: "Hydration", icon: "💧" },
-  { id: "strength-lifting", name: "Strength & Lifting", icon: "🏋" },
-  { id: "cardio-running", name: "Cardio & Running", icon: "🏃" },
-  { id: "sleep-recovery", name: "Sleep & Recovery", icon: "😴" },
-  { id: "womens-health", name: "Women's Health", icon: "🤰" },
-  { id: "age-growth", name: "Age & Growth", icon: "🧒" },
-  { id: "supplements-health", name: "Supplements & Health", icon: "💊" },
-  { id: "wellness-lifestyle", name: "Wellness & Lifestyle", icon: "🧘" },
-  { id: "cooking-kitchen", name: "Cooking & Kitchen", icon: "🍳" },
-  { id: "food-nutrition-diet", name: "Food Nutrition & Diet", icon: "🍽" },
-  { id: "meal-planning-grocery", name: "Meal Planning & Grocery", icon: "🛒" }
+  { id: "body-metrics", name: "Body Metrics", icon: "" },
+  { id: "calories-energy", name: "Calories & Energy", icon: "" },
+  { id: "nutrition-macros", name: "Nutrition & Macros", icon: "" },
+  { id: "hydration", name: "Hydration", icon: "" },
+  { id: "strength-lifting", name: "Strength & Lifting", icon: "" },
+  { id: "cardio-running", name: "Cardio & Running", icon: "" },
+  { id: "sleep-recovery", name: "Sleep & Recovery", icon: "" },
+  { id: "womens-health", name: "Women's Health", icon: "" },
+  { id: "age-growth", name: "Age & Growth", icon: "" },
+  { id: "supplements-health", name: "Supplements & Health", icon: "" },
+  { id: "wellness-lifestyle", name: "Wellness & Lifestyle", icon: "" },
+  { id: "cooking-kitchen", name: "Cooking & Kitchen", icon: "" },
+  { id: "food-nutrition-diet", name: "Food Nutrition & Diet", icon: "" },
+  { id: "meal-planning-grocery", name: "Meal Planning & Grocery", icon: "" }
 ];
 
 const calculators = [
