@@ -72,6 +72,14 @@ const NUTRYIO_ADS = {
     'recipe-sidebar-bottom':       'rectangle',
   },
 
+  ezmobVideo: {
+    enabled: true,
+    scriptUrl: 'https://docdn.ezmob.com/prebid.js',
+    rendererUrl: 'https://docdn.ezmob.com/outstream_pb.js',
+    zoneId: 393463,
+    host: 'cpm.ezmob.com',
+  },
+
   /* Adsterra smartlink opened by a click anywhere on the page */
   clickSmartlink: {
     enabled: true,
@@ -195,10 +203,66 @@ function _nutryioInitClickSmartlink() {
   document.addEventListener('click', handler, true);
 }
 
+/* ── EZMob outstream video — once per page ───────────────────── */
+
+function _nutryioInitVideoAd() {
+  const cfg = NUTRYIO_ADS.ezmobVideo;
+  if (!cfg.enabled || document.getElementById('nutryio-ezmob-video-script')) return;
+
+  if (!document.getElementById('container-1')) {
+    const container = document.createElement('div');
+    container.id = 'container-1';
+    container.setAttribute('aria-label', 'Video advertisement');
+    document.body.appendChild(container);
+  }
+
+  const pbjs = window.pbjs = window.pbjs || {};
+  pbjs.que = pbjs.que || [];
+  pbjs.que.push(function () {
+    pbjs.addAdUnits([{
+      code: 'container-1',
+      mediaTypes: {
+        video: {
+          context: 'outstream',
+          playerSize: [300, 250],
+          renderer: {
+            url: cfg.rendererUrl,
+            render: function (bid) {
+              if (typeof window.OutstreamPlayerPB === 'function') {
+                window.OutstreamPlayerPB(bid, {
+                  displayMode: 'floating',
+                  transitions: true,
+                  vpaidMode: 2,
+                });
+              }
+            },
+          },
+        },
+      },
+      bids: [{ bidder: 'adkernel', params: { zoneId: cfg.zoneId, host: cfg.host } }],
+    }]);
+    pbjs.requestBids({
+      bidsBackHandler: function () {
+        const bids = pbjs.getHighestCpmBids('container-1');
+        if (bids.length === 0) return;
+        pbjs.renderAd(document, bids[0].adId);
+      },
+    });
+  });
+
+  const script = document.createElement('script');
+  script.id = 'nutryio-ezmob-video-script';
+  script.type = 'text/javascript';
+  script.src = cfg.scriptUrl;
+  script.async = true;
+  document.head.appendChild(script);
+}
+
 /* ── Activation ─────────────────────────────────────────────── */
 
 function _nutryioActivateAds() {
   document.querySelectorAll('[data-ad]').forEach(_nutryioRenderSlot);
+  _nutryioInitVideoAd();
   _nutryioInitClickSmartlink();
 }
 
