@@ -2,10 +2,8 @@
    Nutryio Ads Manager  ·  /shared/ads.js
    Loaded automatically on every page via template.js.
 
-   Networks (rotated per [data-ad] slot):
-     1. Adsterra banners    (728x90 + 300x250)
-     2. Advertica banners   (728x90 + 300x250)
-     3. (optional) Google AdSense — disabled by default
+   Advertica banners (728x90 + 300x250) in each [data-ad] slot.
+   Optional Google AdSense configuration remains disabled.
 
    ================================================================= */
 
