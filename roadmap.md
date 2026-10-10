@@ -16,3 +16,8 @@
 - [x] Add the supplied AdMaven verification meta tag to every static page head.
 - [x] Remove Advertica configuration and banner rendering; hide unused ad slots.
 - [x] Verify tags and absence of Advertica across the website.
+
+# AdMaven installation
+- [x] Replace root-served sw.js with the uploaded AdMaven file.
+- [x] Add supplied popunder, push, and in-page AdMaven scripts to every page head.
+- [x] Verify uploaded file integrity, all page references, and script requests (vendor responses stubbed; live ad delivery not tested).
