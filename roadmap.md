@@ -4,6 +4,10 @@
 - [x] Verify pages retain banner advertisements without removed elements.
 
 # Video ads and preview
-- [x] Add the supplied EZMob floating video ad across all website pages.
+- [x] Remove the previously supplied EZMob floating video ad across all website pages.
 - [x] Restore the preview for the homepage and directory page addresses.
-- [x] Verify video setup and page navigation without reintroducing removed widgets.
+- [x] Verify page navigation without reintroducing removed widgets.
+# Advertising removal
+- [x] Remove all Adsterra banners and click-anywhere smartlinks from the shared advertising manager.
+- [x] Remove EZMob video configuration, scripts, and player initialization.
+- [ ] Verify sitewide removal while retaining Advertica banners.
