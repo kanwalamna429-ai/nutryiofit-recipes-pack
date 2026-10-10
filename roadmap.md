@@ -10,4 +10,4 @@
 # Advertising removal
 - [x] Remove all Adsterra banners and click-anywhere smartlinks from the shared advertising manager.
 - [x] Remove EZMob video configuration, scripts, and player initialization.
-- [ ] Verify sitewide removal while retaining Advertica banners.
+- [x] Verify sitewide removal while retaining Advertica banners.
