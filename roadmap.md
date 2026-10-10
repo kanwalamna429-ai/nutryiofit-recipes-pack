@@ -15,4 +15,4 @@
 # Verification and Advertica removal
 - [x] Add the supplied AdMaven verification meta tag to every static page head.
 - [x] Remove Advertica configuration and banner rendering; hide unused ad slots.
-- [ ] Verify tags and absence of Advertica across the website.
+- [x] Verify tags and absence of Advertica across the website.
