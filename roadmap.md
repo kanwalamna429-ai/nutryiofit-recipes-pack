@@ -11,3 +11,8 @@
 - [x] Remove all Adsterra banners and click-anywhere smartlinks from the shared advertising manager.
 - [x] Remove EZMob video configuration, scripts, and player initialization.
 - [x] Verify sitewide removal while retaining Advertica banners.
+
+# Verification and Advertica removal
+- [x] Add the supplied AdMaven verification meta tag to every static page head.
+- [x] Remove Advertica configuration and banner rendering; hide unused ad slots.
+- [x] Verify tags and absence of Advertica across the website.
