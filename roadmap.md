@@ -19,5 +19,6 @@
 
 # AdMaven installation
 - [x] Replace root-served sw.js with the uploaded AdMaven file.
+- [x] Remove AdMaven push ad (sw.js service worker) and in-page push (wbbcd=1726196) scripts from every page head; popunder and banners stay.
 - [x] Add supplied popunder, push, and in-page AdMaven scripts to every page head.
 - [x] Verify uploaded file integrity, all page references, and script requests (vendor responses stubbed; live ad delivery not tested).
