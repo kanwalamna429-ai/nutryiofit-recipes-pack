@@ -76,10 +76,6 @@ async function collectUrls() {
     if (url === "/") {
       priority = 1.0;
       changefreq = "daily";
-    } else if (url.startsWith("/blog")) {
-      priority = url === "/blog/" ? 0.9 : 0.7;
-      changefreq = "weekly";
-    } else if (url.startsWith("/calculators")) {
       priority = 0.8;
       changefreq = "monthly";
     } else if (url.startsWith("/recipes")) {
