@@ -121,12 +121,6 @@ function _injectComponents() {
     window.gtag('config', gaId);
   }
 
-  /* Auto-load the AdSense manager on every page */
-  if (!document.querySelector('script[src="/shared/ads.js"]')) {
-    const adsScript = document.createElement('script');
-    adsScript.src = '/shared/ads.js';
-    document.head.appendChild(adsScript);
-  }
 
   /* Auto-load recipe enhancements (copy / print). No-op on non-recipe pages. */
   if (!document.querySelector('script[src="/shared/recipe.js"]')) {
