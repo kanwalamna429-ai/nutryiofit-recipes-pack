@@ -15,7 +15,7 @@
   --pill-hover: #e2e8f0;
   
   --font-sans: 'Inter', sans-serif;
-  --max-width: 1200px;
+  --max-width: 960px;
   --radius: 1rem;
   --transition: all 0.3s ease;
 }
@@ -687,8 +687,6 @@ kbd {
   .calculator-grid { grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
 }
 
-@media (min-width: 1200px) {
-  .calculator-grid { grid-template-columns: repeat(4, 1fr); }
 }
 
 .calc-card {
@@ -933,7 +931,7 @@ kbd {
 /* Blog 2-col posts + sidebar layout */
 .blog-layout {
   display: grid;
-  grid-template-columns: 1fr 300px;
+  grid-template-columns: minmax(0, 1fr);
   gap: 2.5rem;
   align-items: start;
 }
@@ -1232,7 +1230,7 @@ kbd {
   font-size: 0.7rem; font-weight: 700; flex-shrink: 0;
 }
 .post-layout {
-  display: grid; grid-template-columns: 1fr 300px;
+  display: grid; grid-template-columns: minmax(0, 1fr);
   gap: 2.5rem; align-items: start; padding: 3rem 0;
 }
 @media (max-width: 960px) {
@@ -1795,7 +1793,7 @@ kbd {
 /* Single recipe page layout */
 .recipe-layout {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 300px;
+  grid-template-columns: minmax(0, 1fr);
   gap: 2.5rem;
   align-items: start;
   padding: 3rem 0;
