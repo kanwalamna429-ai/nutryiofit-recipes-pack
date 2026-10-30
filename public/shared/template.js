@@ -16,7 +16,6 @@ const _HEADER_HTML = `
     <nav class="desktop-nav">
       <a href="/">Home</a>
       <a href="/#categories" class="nav-scroll-btn">Calculators</a>
-      <a href="/blog/">Blog</a>
       <a href="/recipes/">Recipes</a>
       <a href="/about/">About</a>
     </nav>
@@ -33,7 +32,6 @@ const _HEADER_HTML = `
     <nav class="mobile-nav-inner">
       <a href="/">Home</a>
       <a href="/#categories" class="mobile-nav-scroll-btn">Calculators</a>
-      <a href="/blog/">Blog</a>
       <a href="/recipes/">Recipes</a>
       <a href="/about/">About</a>
       <a href="/contact/">Contact</a>
@@ -55,7 +53,6 @@ const _FOOTER_HTML = `
         <ul style="list-style:none;padding:0;display:flex;flex-direction:column;gap:0.75rem;">
           <li><a href="/"           style="font-size:0.875rem;color:#94a3b8;text-decoration:none;">Home</a></li>
           <li><a href="/#categories" style="font-size:0.875rem;color:#94a3b8;text-decoration:none;">All Calculators</a></li>
-          <li><a href="/blog/"      style="font-size:0.875rem;color:#94a3b8;text-decoration:none;">Blog</a></li>
           <li><a href="/recipes/"    style="font-size:0.875rem;color:#94a3b8;text-decoration:none;">Recipes</a></li>
           <li><a href="/about/"     style="font-size:0.875rem;color:#94a3b8;text-decoration:none;">About Us</a></li>
           <li><a href="/contact/"   style="font-size:0.875rem;color:#94a3b8;text-decoration:none;">Contact</a></li>
@@ -124,12 +121,6 @@ function _injectComponents() {
     window.gtag('config', gaId);
   }
 
-  /* Auto-load the AdSense manager on every page */
-  if (!document.querySelector('script[src="/shared/ads.js"]')) {
-    const adsScript = document.createElement('script');
-    adsScript.src = '/shared/ads.js';
-    document.head.appendChild(adsScript);
-  }
 
   /* Auto-load recipe enhancements (copy / print). No-op on non-recipe pages. */
   if (!document.querySelector('script[src="/shared/recipe.js"]')) {

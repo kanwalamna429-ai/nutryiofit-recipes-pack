@@ -16,7 +16,7 @@
   --pill-hover: #e2e8f0;
   
   --font-sans: 'Inter', sans-serif;
-  --max-width: 1200px;
+  --max-width: 960px;
   --radius: 1rem;
   --transition: all 0.3s ease;
 }
@@ -79,7 +79,7 @@
 /* Two-column layout: calculator left, sidebar right */
 .calc-layout { 
   display: grid; 
-  grid-template-columns: 1fr 340px; 
+  grid-template-columns: minmax(0, 1fr); 
   gap: 2rem; 
   padding: 2.5rem 1rem 4rem; 
 }

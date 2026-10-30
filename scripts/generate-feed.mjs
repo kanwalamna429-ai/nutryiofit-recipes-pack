@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Generates public/feed.xml from public/blog/*/index.html and public/recipes/*/index.html
+// Generates public/feed.xml from public/recipes/*/index.html
 // Runs automatically on prebuild so new posts/recipes are included.
 import { readdirSync, readFileSync, writeFileSync, statSync, existsSync } from "node:fs";
 import { join } from "node:path";
@@ -89,7 +89,6 @@ function collect(dir, urlPrefix) {
 }
 
 const items = [
-  ...collect("blog", "/blog"),
   ...collect("recipes", "/recipes"),
 ].sort((a, b) => b._sort - a._sort);
 
